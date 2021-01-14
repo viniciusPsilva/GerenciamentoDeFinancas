@@ -39,4 +39,8 @@ public class PlanoDeGasto {
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Gasto> gastos;
 
+    @ManyToOne(targetEntity = Usuario.class)
+    @JoinColumn(referencedColumnName = "id_usuario")
+    private Usuario usuario;
+
 }
