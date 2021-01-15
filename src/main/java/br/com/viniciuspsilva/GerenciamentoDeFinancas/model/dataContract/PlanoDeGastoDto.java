@@ -1,11 +1,9 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Gasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusPlano;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
@@ -36,8 +34,6 @@ public class PlanoDeGastoDto {
     @NotNull
     @Future
     private LocalDate dataReferencia;
-
-    private List<Gasto> gastos;
 
     private LocalDate dataCriacao;
 }

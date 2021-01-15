@@ -3,11 +3,15 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Prioridade;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusGasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Tipo;
+import lombok.Builder;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Getter
+@Builder
 @Entity
 public class Gasto {
 
@@ -47,7 +51,7 @@ public class Gasto {
     private int parcelaAtual;
 
     @Column(updatable = false)
-    private LocalDate dataCriacao = LocalDate.now();
+    private LocalDate dataCriacao;
 
     @ManyToOne(targetEntity = PlanoDeGasto.class, fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id_plano")

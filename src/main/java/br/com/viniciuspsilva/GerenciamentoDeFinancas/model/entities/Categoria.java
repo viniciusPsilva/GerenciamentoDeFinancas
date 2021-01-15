@@ -1,9 +1,15 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities;
 
-import javax.persistence.*;
-import java.util.List;
+import lombok.*;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+
+@Getter
+@Builder
 @Entity
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class Categoria {
 
     @Id
@@ -17,7 +23,7 @@ public class Categoria {
     @Column(nullable = true)
     private String descricao;
 
-    @OneToMany(orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Gasto> gastos;
+    @Column(nullable = false, updatable = false)
+    private LocalDate dataCriacao = LocalDate.now();
 
 }

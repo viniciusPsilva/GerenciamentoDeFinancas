@@ -5,10 +5,10 @@ import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanoDeGasto
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Prioridade;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusGasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Tipo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
@@ -19,6 +19,9 @@ import java.time.LocalDate;
 @Builder
 @Data
 public class GastoDto {
+
+    @JsonIgnoreProperties
+    private Integer id;
 
     @Size(min = 3, max = 120)
     @NotNull
@@ -55,7 +58,9 @@ public class GastoDto {
 
     private LocalDate dataCriacao;
 
-    private PlanoDeGasto planoDeGasto;
+    @JsonIgnoreProperties
+    private Integer idPlanoDeGasto;
 
-    private Categoria categoria;
+    @JsonIgnoreProperties
+    private Integer idCategoria;
 }

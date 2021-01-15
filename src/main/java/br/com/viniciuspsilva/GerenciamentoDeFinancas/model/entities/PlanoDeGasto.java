@@ -1,13 +1,17 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusPlano;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
+@Getter
+@Builder
 @Entity
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class PlanoDeGasto {
 
     @Id
@@ -36,11 +40,7 @@ public class PlanoDeGasto {
     @Column(updatable = false)
     private LocalDate dataCriacao = LocalDate.now();
 
-    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Gasto> gastos;
-
-    @ManyToOne(targetEntity = Usuario.class)
-    @JoinColumn(referencedColumnName = "id_usuario")
-    private Usuario usuario;
+    @Column(updatable = false)
+    private Integer id_Usuario;
 
 }
