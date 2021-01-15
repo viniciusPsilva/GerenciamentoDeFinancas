@@ -36,7 +36,7 @@ public class GastoControllerTest {
     public void deveCadastrarUmGasto() throws Exception {
         when(gastoService.cadastrarGasto(any(GastoDto.class))).thenReturn(GastoFixture.gastoDto());
 
-        mockMvc.perform(post("/gasto")
+        mockMvc.perform(post("/financas/gasto")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(GastoFixture.gastoDto()))
