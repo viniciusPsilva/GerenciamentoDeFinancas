@@ -1,17 +1,15 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Entity
 public class Usuario {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario", updatable = false)
-    private UUID id = UUID.randomUUID();
+    private Integer id;
 
     @Column(nullable = false)
     private String nome;
