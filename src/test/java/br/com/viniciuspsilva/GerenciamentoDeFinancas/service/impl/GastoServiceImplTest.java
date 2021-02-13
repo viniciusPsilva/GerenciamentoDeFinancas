@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(SpringExtension.class)
-public class CadastroServiceImplTest {
+public class GastoServiceImplTest {
 
     @Mock
     private GastoRepository repository;
