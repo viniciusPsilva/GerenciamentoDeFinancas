@@ -13,12 +13,12 @@ import org.springframework.stereotype.Service;
 public class GastoServiceImpl implements GastoService {
 
     private final GastoRepository repository;
-    private final GastoMapper gastoMapper;
+    private final GastoMapper  gastoMapper = GastoMapper.INSTANCE;
 
     @Override
     public GastoDto cadastrarGasto(GastoDto gastoDto) {
-        Gasto gasto = gastoMapper.toEntity(gastoDto);
+        Gasto gasto = gastoMapper.mapFromGastoDto(gastoDto);
         Gasto gastoPersistido = repository.save(gasto);
-        return gastoMapper.toDto(gastoPersistido);
+        return gastoMapper.mapFromGasto(gastoPersistido);
     }
 }

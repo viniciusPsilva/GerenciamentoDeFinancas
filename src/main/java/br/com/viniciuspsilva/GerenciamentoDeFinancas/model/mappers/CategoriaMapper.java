@@ -2,21 +2,14 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.CategoriaDto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Categoria;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-public class CategoriaMapper {
-    public static CategoriaDto toDto(Categoria categoria){
-        return CategoriaDto.builder()
-                .nome(categoria.getNome())
-                .descricao(categoria.getDescricao())
-                .dataCriacao(categoria.getDataCriacao())
-                .build();
-    }
+@Mapper
+public interface CategoriaMapper {
 
-    public static Categoria toEntity(CategoriaDto categoriaDto){
-        return Categoria.builder()
-                .nome(categoriaDto.getNome())
-                .descricao(categoriaDto.getDescricao())
-                .build();
-    }
+    static final CategoriaMapper INSTANCE = Mappers.getMapper(CategoriaMapper.class);
 
+    Categoria mapFromCategoriaDto(CategoriaDto source);
+    CategoriaDto mapFromCategoria(Categoria source);
 }

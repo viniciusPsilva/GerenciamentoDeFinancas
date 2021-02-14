@@ -8,6 +8,8 @@ import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Tipo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Future;
@@ -16,8 +18,8 @@ import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Builder
-@Data
+@Getter
+@Setter
 public class GastoDto {
 
     @JsonIgnoreProperties
