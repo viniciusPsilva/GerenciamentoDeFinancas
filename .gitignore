@@ -36,3 +36,4 @@ build/
 .mvn
 mvnw
 mvnw.cmd
+/data/demo.mv.db
