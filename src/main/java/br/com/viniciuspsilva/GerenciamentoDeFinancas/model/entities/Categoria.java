@@ -1,15 +1,14 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Getter
-@Builder
+@Setter
 @Entity
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
-@AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class Categoria {
 
     @Id

@@ -5,13 +5,14 @@ import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusGa
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Tipo;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Getter
-@Builder
+@Setter
 @Entity
 public class Gasto {
 

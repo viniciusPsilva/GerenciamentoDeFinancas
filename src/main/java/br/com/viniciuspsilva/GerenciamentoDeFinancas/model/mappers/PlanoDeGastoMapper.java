@@ -2,28 +2,16 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.PlanoDeGastoDto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanoDeGasto;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-public class PlanoDeGastoMapper {
-    public static PlanoDeGastoDto toDto(PlanoDeGasto planoDeGasto){
-        return PlanoDeGastoDto.builder()
-                .titulo(planoDeGasto.getTitulo())
-                .descricao(planoDeGasto.getDescricao())
-                .valorPlanejado(planoDeGasto.getValorPlanejado())
-                .totalGasto(planoDeGasto.getTotalGasto())
-                .status(planoDeGasto.getStatus())
-                .dataReferencia(planoDeGasto.getDataReferencia())
-                .dataCriacao(planoDeGasto.getDataCriacao())
-                .build();
-    }
+@Mapper
+public interface PlanoDeGastoMapper {
 
-    public static PlanoDeGasto toEntity(PlanoDeGastoDto planoDeGastoDto){
-        return PlanoDeGasto.builder()
-                .titulo(planoDeGastoDto.getTitulo())
-                .descricao(planoDeGastoDto.getDescricao())
-                .valorPlanejado(planoDeGastoDto.getValorPlanejado())
-                .totalGasto(planoDeGastoDto.getTotalGasto())
-                .status(planoDeGastoDto.getStatus())
-                .dataReferencia(planoDeGastoDto.getDataReferencia())
-                .build();
-    }
+    PlanoDeGastoMapper INSTANCE = Mappers.getMapper(PlanoDeGastoMapper.class);
+
+    PlanoDeGastoDto mapFromPlanoDeGasto(PlanoDeGasto source);
+
+    PlanoDeGasto mapFromPladoDeGastoDto(PlanoDeGastoDto source);
+
 }

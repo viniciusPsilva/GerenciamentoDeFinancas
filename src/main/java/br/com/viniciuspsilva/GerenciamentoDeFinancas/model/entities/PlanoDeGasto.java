@@ -8,10 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Getter
-@Builder
 @Entity
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
-@AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class PlanoDeGasto {
 
     @Id

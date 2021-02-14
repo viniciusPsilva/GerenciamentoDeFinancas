@@ -1,22 +1,13 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.fixture;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.CategoriaDto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.GastoDto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.PlanoDeGastoDto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Categoria;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Gasto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanoDeGasto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Prioridade;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusGasto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Tipo;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 public class GastoFixture {
 
     public static GastoDto gastoDto(){
-        return GastoDto.builder()
+        return null;
+        /*return GastoDto.builder()
                 .nome("Gasto Teste")
                 .descricao("Gasto Teste")
                 .valor(BigDecimal.valueOf(200.00))
@@ -28,11 +19,12 @@ public class GastoFixture {
                 .dataCriacao(LocalDate.now())
                 .idPlanoDeGasto(1)
                 .idCategoria(1)
-                .build();
+                .build();*/
     }
 
     public static Gasto gasto(){
-        return Gasto.builder()
+        return null;
+        /*return Gasto.builder()
                 .nome("Gasto Teste")
                 .descricao("Gasto Teste")
                 .valor(BigDecimal.valueOf(200.00))
@@ -43,8 +35,8 @@ public class GastoFixture {
                 .prioridade(Prioridade.BAIXA)
                 .dataCriacao(LocalDate.now())
                 .planoDeGasto(PlanoDeGasto.builder().build())
-                .categoria(Categoria.builder().build())
-                .build();
+                //.categoria(Categoria.builder().build())
+                .build();*/
     }
 
 
