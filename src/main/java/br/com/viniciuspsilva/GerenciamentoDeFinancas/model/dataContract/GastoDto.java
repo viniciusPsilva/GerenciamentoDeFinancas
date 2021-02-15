@@ -6,6 +6,7 @@ import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Priorida
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusGasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Tipo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -37,9 +38,11 @@ public class GastoDto {
     @NotNull
     private BigDecimal valor;
 
+    @JsonProperty(value = "data_referencia")
     @NotNull
     private LocalDate dataReferencia;
 
+    @JsonProperty(value = "data_vencimento")
     @Future
     private LocalDate dataVencimento;
 
@@ -52,17 +55,21 @@ public class GastoDto {
     @NotNull
     private Prioridade prioridade;
 
+    @JsonProperty(value = "total_parcelas")
     @Digits(integer = 2, fraction = 0)
     private int totalParcelas;
 
+    @JsonProperty(value = "parcela_atual")
     @Digits(integer = 2, fraction = 0)
     private int parcelaAtual;
 
     private LocalDate dataCriacao;
 
+    @JsonProperty(value = "id_plano")
     @JsonIgnoreProperties
     private Integer idPlanoDeGasto;
 
+    @JsonProperty(value = "id_categoria")
     @JsonIgnoreProperties
     private Integer idCategoria;
 }

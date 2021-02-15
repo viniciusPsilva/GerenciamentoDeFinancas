@@ -11,6 +11,7 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Mapper
 public interface GastoMapper {
@@ -18,4 +19,5 @@ public interface GastoMapper {
 
     GastoDto mapFromGasto(Gasto source);
     Gasto mapFromGastoDto(GastoDto sorce);
+    Iterable<GastoDto> mapFromGastoList(Iterable<Gasto> source);
 }

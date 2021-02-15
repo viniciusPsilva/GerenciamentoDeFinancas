@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class GastoServiceImpl implements GastoService {
 
     private final GastoRepository repository;
-    private final GastoMapper  gastoMapper = GastoMapper.INSTANCE;
+    private final GastoMapper gastoMapper = GastoMapper.INSTANCE;
 
     @Override
     public GastoDto cadastrarGasto(GastoDto gastoDto) {
@@ -21,4 +21,11 @@ public class GastoServiceImpl implements GastoService {
         Gasto gastoPersistido = repository.save(gasto);
         return gastoMapper.mapFromGasto(gastoPersistido);
     }
+
+    @Override
+    public Iterable<GastoDto> listarGastos() {
+        Iterable<Gasto> allGastos = repository.findAll();
+        return gastoMapper.mapFromGastoList(allGastos);
+    }
+
 }
