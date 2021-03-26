@@ -63,7 +63,7 @@ public class GastoDto {
     @Digits(integer = 2, fraction = 0)
     private int parcelaAtual;
 
-    private LocalDate dataCriacao;
+    private LocalDate dataCriacao = LocalDate.now();
 
     @JsonProperty(value = "id_plano")
     @JsonIgnoreProperties
