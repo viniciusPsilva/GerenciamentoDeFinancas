@@ -16,9 +16,9 @@ public class GastoServiceImpl implements GastoService {
     private final GastoMapper gastoMapper = GastoMapper.INSTANCE;
 
     @Override
-    public GastoDto cadastrarGasto(GastoDto gastoDto) {
-        Gasto gasto = gastoMapper.mapFromGastoDto(gastoDto);
-        Gasto gastoPersistido = repository.save(gasto);
+    public GastoDto cadastrarGasto(final GastoDto gastoDto) {
+        final Gasto gasto = gastoMapper.mapFromGastoDto(gastoDto);
+        final Gasto gastoPersistido = repository.save(gasto);
         return gastoMapper.mapFromGasto(gastoPersistido);
     }
 
