@@ -1,5 +1,6 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.service.impl;
 
+import br.com.six2six.fixturefactory.Fixture;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.fixture.GastoFixture;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.GastoDto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Gasto;
@@ -27,9 +28,6 @@ public class GastoServiceImplTest {
     @Mock
     private GastoRepository repository;
 
-    @Mock
-    private GastoMapper gastoMapper;
-
     @InjectMocks
     private GastoServiceImpl gastoService;
 
@@ -38,11 +36,12 @@ public class GastoServiceImplTest {
     //TODO ajustar testes
     //@Test
     public void cadastrarGasto(){
-        Mockito.when(gastoMapper.mapFromGastoDto(any(GastoDto.class))).thenReturn(GastoFixture.gasto());
-        Mockito.when(gastoMapper.mapFromGasto(any(Gasto.class))).thenReturn(GastoFixture.gastoDto());
-        Mockito.when(repository.save(any(Gasto.class))).thenReturn(GastoFixture.gasto());
+        GastoDto gastoDto = Fixture.from(GastoDto.class).gimme("gasto");
+        Gasto gasto = Fixture.from(Gasto.class).gimme("gasto");
 
-        GastoDto gastoPersistido = gastoService.cadastrarGasto(GastoFixture.gastoDto());
+        Mockito.when(repository.save(any(Gasto.class))).thenReturn(gasto);
+
+        GastoDto gastoPersistido = gastoService.cadastrarGasto(gastoDto);
 
         assertNotNull(gastoPersistido);
         assertEquals("Gasto Teste", gastoPersistido.getNome());
