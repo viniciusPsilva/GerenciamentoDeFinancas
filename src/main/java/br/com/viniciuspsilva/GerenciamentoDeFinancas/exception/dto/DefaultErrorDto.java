@@ -5,7 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ErrorDto {
-    private String field;
-    private String message;
+public class DefaultErrorDto {
+    private String mensagem;
 }
