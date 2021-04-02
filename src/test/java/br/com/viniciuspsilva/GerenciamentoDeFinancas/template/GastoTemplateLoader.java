@@ -27,8 +27,8 @@ public class GastoTemplateLoader implements TemplateLoader {
             add("totalParcelas", 0);
             add("parcelaAtual", 0);
             add("dataCriacao", LocalDate.now());
-            add("idPlanoDeGasto", 1);
-            add("idCategoria", 1);
+            //add("idPlanoDeGasto", 1);
+            //add("idCategoria", 1);
         }});
     }
 }
