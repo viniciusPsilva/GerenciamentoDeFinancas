@@ -30,4 +30,9 @@ public class GastoController {
         return ResponseEntity.ok(gastoDtos);
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<GastoDto> buscar(@PathVariable Integer id){
+        GastoDto gasto = gastoService.buscar(id);
+        return ResponseEntity.ok(gasto);
+    }
 }

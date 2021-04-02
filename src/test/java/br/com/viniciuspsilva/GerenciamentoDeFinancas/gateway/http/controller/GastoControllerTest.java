@@ -101,5 +101,39 @@ public class GastoControllerTest {
 
     }
 
+    @Test
+    public void deveBuscarGastoPorId() throws Exception {
+
+        GastoDto gastoDto = Fixture.from(GastoDto.class).gimme("gasto");
+
+        when(gastoService.buscar(any(Integer.class))).thenReturn(gastoDto);
+
+        MvcResult mvcResult = mockMvc.perform(get("/financas/gasto/1")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+        ).andReturn();
+
+        MockHttpServletResponse response = mvcResult.getResponse();
+        String responseBody = response.getContentAsString();
+        GastoDto responseObject = objectMapper.readValue(responseBody, new TypeReference<GastoDto>(){});
+
+        Assertions.assertEquals(HttpStatus.OK.value(), response.getStatus());
+        Assertions.assertEquals(gastoDto.getId(), responseObject.getId());
+        Assertions.assertEquals(gastoDto.getNome(), responseObject.getNome());
+        Assertions.assertEquals(gastoDto.getDescricao(), responseObject.getDescricao());
+        Assertions.assertEquals(gastoDto.getStatus(), responseObject.getStatus());
+        Assertions.assertEquals(gastoDto.getIdPlanoDeGasto(),responseObject.getIdPlanoDeGasto());
+        Assertions.assertEquals(gastoDto.getIdCategoria(),responseObject.getIdCategoria());
+        Assertions.assertEquals(gastoDto.getDataCriacao(),responseObject.getDataCriacao());
+        Assertions.assertEquals(gastoDto.getDataReferencia(),responseObject.getDataReferencia());
+        Assertions.assertEquals(gastoDto.getDataVencimento(),responseObject.getDataVencimento());
+        Assertions.assertEquals(gastoDto.getValor(),responseObject.getValor());
+        Assertions.assertEquals(gastoDto.getParcelaAtual(),responseObject.getParcelaAtual());
+        Assertions.assertEquals(gastoDto.getTotalParcelas(),responseObject.getTotalParcelas());
+        Assertions.assertEquals(gastoDto.getTipo(),responseObject.getTipo());
+
+
+    }
+
 
 }
