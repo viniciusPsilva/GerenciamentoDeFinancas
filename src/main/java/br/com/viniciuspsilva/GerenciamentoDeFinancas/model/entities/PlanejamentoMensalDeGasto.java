@@ -1,5 +1,6 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities;
 
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.MesReferencia;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusPlano;
 import lombok.*;
 
@@ -9,7 +10,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @Entity
-public class PlanoDeGasto {
+public class PlanejamentoMensalDeGasto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +33,7 @@ public class PlanoDeGasto {
     private StatusPlano status = StatusPlano.OK;
 
     @Column(nullable = false)
-    private LocalDate dataReferencia;
+    private MesReferencia mesReferencia;
 
     @Column(updatable = false)
     private LocalDate dataCriacao = LocalDate.now();

@@ -4,6 +4,7 @@ import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.GastoDto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.MesReferencia;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Prioridade;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusGasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Tipo;
@@ -19,7 +20,7 @@ public class GastoDtoTemplateLoader implements TemplateLoader {
             add("nome", "Gasto na Padaria");
             add("descricao", "compra de pao e leite na padaria");
             add("valor", BigDecimal.valueOf(10.00));
-            add("dataReferencia", LocalDate.of(2021, 1, 1));
+            add("mesReferencia", MesReferencia.JANEIRO);
             add("dataVencimento", LocalDate.now().plusDays(1));
             add("tipo", Tipo.GASTO);
             add("status", StatusGasto.PAGO);
@@ -36,7 +37,7 @@ public class GastoDtoTemplateLoader implements TemplateLoader {
             add("nome", "Gasto na Padaria");
             add("descricao", "compra de pão e leite na padaria");
             add("valor", BigDecimal.valueOf(10.00));
-            add("dataReferencia", LocalDate.of(2021, 1, 1));
+            add("mesReferencia", MesReferencia.JANEIRO);
             add("dataVencimento", LocalDate.now().plusDays(1));
             add("tipo", Tipo.FREQUENTE);
             add("status", StatusGasto.EM_ABERTO);
@@ -53,7 +54,7 @@ public class GastoDtoTemplateLoader implements TemplateLoader {
             add("nome", "Gasto na Padaria");
             add("descricao", "compra de pão e leite na padaria");
             add("valor", BigDecimal.valueOf(10.00));
-            add("dataReferencia", LocalDate.of(2021, 1, 1));
+            add("mesReferencia", MesReferencia.JANEIRO);
             add("dataVencimento", LocalDate.now().plusDays(1));
             add("tipo", Tipo.PARCELADO);
             add("status", StatusGasto.EM_ABERTO);

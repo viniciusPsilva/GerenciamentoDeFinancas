@@ -1,7 +1,7 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.http.controller;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.PlanoDeGastoRepository;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanoDeGasto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanejamentoMensalDeGasto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ public class PlanoDeGastoController {
 
     @GetMapping
     public ResponseEntity listar(){
-        Iterable<PlanoDeGasto> planos = repository.findAll();
+        Iterable<PlanejamentoMensalDeGasto> planos = repository.findAll();
         return ResponseEntity.ok(planos);
     }
 

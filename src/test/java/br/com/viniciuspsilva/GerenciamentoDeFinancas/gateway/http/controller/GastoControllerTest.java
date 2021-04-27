@@ -91,7 +91,7 @@ public class GastoControllerTest {
         Assertions.assertEquals(gastoDto.getIdPlanoDeGasto(),responseObject.getIdPlanoDeGasto());
         Assertions.assertEquals(gastoDto.getIdCategoria(),responseObject.getIdCategoria());
         Assertions.assertEquals(gastoDto.getDataCriacao(),responseObject.getDataCriacao());
-        Assertions.assertEquals(gastoDto.getDataReferencia(),responseObject.getDataReferencia());
+        Assertions.assertEquals(gastoDto.getMesReferencia(),responseObject.getMesReferencia());
         Assertions.assertEquals(gastoDto.getDataVencimento(),responseObject.getDataVencimento());
         Assertions.assertEquals(gastoDto.getValor(),responseObject.getValor());
         Assertions.assertEquals(gastoDto.getParcelaAtual(),responseObject.getParcelaAtual());
@@ -125,7 +125,7 @@ public class GastoControllerTest {
         Assertions.assertEquals(gastoDto.getIdPlanoDeGasto(),responseObject.getIdPlanoDeGasto());
         Assertions.assertEquals(gastoDto.getIdCategoria(),responseObject.getIdCategoria());
         Assertions.assertEquals(gastoDto.getDataCriacao(),responseObject.getDataCriacao());
-        Assertions.assertEquals(gastoDto.getDataReferencia(),responseObject.getDataReferencia());
+        Assertions.assertEquals(gastoDto.getMesReferencia(),responseObject.getMesReferencia());
         Assertions.assertEquals(gastoDto.getDataVencimento(),responseObject.getDataVencimento());
         Assertions.assertEquals(gastoDto.getValor(),responseObject.getValor());
         Assertions.assertEquals(gastoDto.getParcelaAtual(),responseObject.getParcelaAtual());

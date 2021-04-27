@@ -1,9 +1,9 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities;
 
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.MesReferencia;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Prioridade;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusGasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Tipo;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,9 +31,9 @@ public class Gasto {
     private BigDecimal valor;
 
     @Column(nullable = false)
-    private LocalDate dataReferencia;
+    private MesReferencia mesReferencia;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate dataVencimento;
 
     @Column(nullable = false)
@@ -54,9 +54,9 @@ public class Gasto {
     @Column(updatable = false)
     private LocalDate dataCriacao;
 
-    @ManyToOne(targetEntity = PlanoDeGasto.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = PlanejamentoMensalDeGasto.class, fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id_plano")
-    private PlanoDeGasto planoDeGasto;
+    private PlanejamentoMensalDeGasto planoDeGasto;
 
     @ManyToOne(targetEntity = Categoria.class, fetch = FetchType.EAGER)
     private Categoria categoria;

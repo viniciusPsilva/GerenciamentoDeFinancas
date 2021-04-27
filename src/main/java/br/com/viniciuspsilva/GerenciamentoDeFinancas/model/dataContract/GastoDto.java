@@ -1,14 +1,12 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Categoria;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanoDeGasto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.MesReferencia;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Prioridade;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusGasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Tipo;
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,9 +36,9 @@ public class GastoDto {
     @NotNull
     private BigDecimal valor;
 
-    @JsonProperty(value = "data_referencia")
+    @JsonProperty(value = "mes_referencia")
     @NotNull
-    private LocalDate dataReferencia;
+    private MesReferencia mesReferencia;
 
     @JsonProperty(value = "data_vencimento")
     @Future

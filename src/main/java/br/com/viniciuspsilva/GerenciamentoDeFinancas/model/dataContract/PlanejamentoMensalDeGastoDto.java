@@ -1,5 +1,6 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract;
 
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.MesReferencia;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusPlano;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class PlanoDeGastoDto {
+public class PlanejamentoMensalDeGastoDto {
 
     @Size(min = 3, max = 120)
     private String titulo;
@@ -34,8 +35,7 @@ public class PlanoDeGastoDto {
     private StatusPlano status;
 
     @NotNull
-    @Future
-    private LocalDate dataReferencia;
+    private MesReferencia mesReferencia;
 
     private LocalDate dataCriacao;
 }
