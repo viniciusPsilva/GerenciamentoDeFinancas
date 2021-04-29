@@ -6,19 +6,20 @@ import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.Categori
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Categoria;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.CategoriaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@RequiredArgsConstructor
 @Service
 public class CategoriaServiceImpl implements CategoriaService {
 
-    private final CategoriaRepository repository;
+    @Autowired
+    private CategoriaRepository repository;
 
     @Override
-    public CategoriaDto cadastrar(CategoriaDto categoriaDto) {
+    public Categoria cadastrar(Categoria categoriaDto) {
         return null;
     }
 

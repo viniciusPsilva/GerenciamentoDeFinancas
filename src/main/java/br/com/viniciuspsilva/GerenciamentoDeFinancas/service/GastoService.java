@@ -1,9 +1,10 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.service;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.GastoDto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Gasto;
 
 public interface GastoService {
-    GastoDto cadastrarGasto(GastoDto gasto);
-    Iterable<GastoDto> listarGastos();
-    GastoDto buscar(Integer id);
+    Gasto cadastrarGasto(Gasto gasto);
+    Iterable<Gasto> listarGastos();
+    Gasto buscar(Integer id);
 }

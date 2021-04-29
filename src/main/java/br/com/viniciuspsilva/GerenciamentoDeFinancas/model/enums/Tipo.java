@@ -1,4 +1,4 @@
-package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations;
+package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums;
 
 import lombok.Getter;
 

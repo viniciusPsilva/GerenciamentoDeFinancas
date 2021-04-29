@@ -1,9 +1,6 @@
-package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations;
+package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums;
 
 import lombok.Getter;
-
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
 
 @Getter
 public enum MesReferencia {

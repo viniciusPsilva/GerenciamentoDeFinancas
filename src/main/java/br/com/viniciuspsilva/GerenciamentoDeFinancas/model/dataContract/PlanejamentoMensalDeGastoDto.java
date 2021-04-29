@@ -1,19 +1,15 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.MesReferencia;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusPlano;
-import lombok.Builder;
-import lombok.Data;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusPlano;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter

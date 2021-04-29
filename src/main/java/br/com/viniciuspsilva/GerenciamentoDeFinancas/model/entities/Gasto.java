@@ -1,9 +1,9 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.MesReferencia;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Prioridade;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusGasto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Tipo;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Prioridade;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusGasto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Tipo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -55,10 +55,11 @@ public class Gasto {
     private LocalDate dataCriacao;
 
     @ManyToOne(targetEntity = PlanejamentoMensalDeGasto.class, fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id_plano")
+    @JoinColumn(referencedColumnName = "id_plano", name = "id_plano")
     private PlanejamentoMensalDeGasto planoDeGasto;
 
     @ManyToOne(targetEntity = Categoria.class, fetch = FetchType.EAGER)
+    @JoinColumn(referencedColumnName = "id_categoria", name = "id_categoria")
     private Categoria categoria;
 
 }

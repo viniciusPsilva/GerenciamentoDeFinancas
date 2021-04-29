@@ -1,6 +1,6 @@
-package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.converter;
+package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.converter;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.MesReferencia;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

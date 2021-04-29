@@ -1,10 +1,9 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.MesReferencia;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Prioridade;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusGasto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Tipo;
-import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Prioridade;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusGasto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Tipo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

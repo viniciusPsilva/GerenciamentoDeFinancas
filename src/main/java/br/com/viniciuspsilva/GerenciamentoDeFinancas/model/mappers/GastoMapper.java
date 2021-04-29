@@ -4,10 +4,13 @@ import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.GastoDto
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Categoria;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Gasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanejamentoMensalDeGasto;
+import org.junit.After;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
+
+import java.util.Objects;
 
 @Mapper
 public abstract class GastoMapper {
@@ -33,5 +36,14 @@ public abstract class GastoMapper {
         target.setCategoria(categoria);
     }
 
+    @AfterMapping
+    public void afterMappingGastoDto(Gasto source, @MappingTarget GastoDto target){
+
+        if (Objects.nonNull(source) && Objects.nonNull(source.getPlanoDeGasto()))
+            target.setIdPlanoDeGasto(source.getPlanoDeGasto().getId());
+
+        if (Objects.nonNull(source) && Objects.nonNull(source.getCategoria()))
+            target.setIdCategoria(source.getCategoria().getId());
+    }
 
 }

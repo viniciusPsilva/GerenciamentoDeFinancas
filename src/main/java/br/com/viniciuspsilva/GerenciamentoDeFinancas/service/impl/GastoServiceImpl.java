@@ -16,30 +16,28 @@ import java.util.Optional;
 public class GastoServiceImpl implements GastoService {
 
     private final GastoRepository repository;
+
     private final GastoMapper gastoMapper = GastoMapper.INSTANCE;
 
     @Override
-    public GastoDto cadastrarGasto(final GastoDto gastoDto) {
-        final Gasto gasto = gastoMapper.mapFromGastoDto(gastoDto);
-        final Gasto gastoPersistido = repository.save(gasto);
-        return gastoMapper.mapFromGasto(gastoPersistido);
+    public Gasto cadastrarGasto(final Gasto gasto) {
+        return repository.save(gasto);
     }
 
     @Override
-    public Iterable<GastoDto> listarGastos() {
-        Iterable<Gasto> allGastos = repository.findAll();
-        return gastoMapper.mapFromGastoList(allGastos);
+    public Iterable<Gasto> listarGastos() {
+        return  repository.findAll();
     }
 
     @Override
-    public GastoDto buscar(Integer id) {
+    public Gasto buscar(Integer id) {
         Optional<Gasto> gasto = repository.findById(id);
 
         if (gasto.isEmpty()){
             throw new GastoNotFoundException("O gasto com id informado não foi encontrado");
         }
 
-        return gastoMapper.mapFromGasto(gasto.get());
+        return gasto.get();
     }
 
 

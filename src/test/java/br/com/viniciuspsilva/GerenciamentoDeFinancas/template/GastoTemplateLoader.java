@@ -3,11 +3,13 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.template;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Categoria;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Gasto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.MesReferencia;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Prioridade;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusGasto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Tipo;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanejamentoMensalDeGasto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Prioridade;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusGasto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Tipo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -28,8 +30,8 @@ public class GastoTemplateLoader implements TemplateLoader {
             add("totalParcelas", 0);
             add("parcelaAtual", 0);
             add("dataCriacao", LocalDate.now());
-            //add("idPlanoDeGasto", 1);
-            //add("idCategoria", 1);
+            add("planoDeGasto", one(PlanejamentoMensalDeGasto.class, "OK"));
+            add("categoria", one(Categoria.class, "valid"));
         }});
     }
 }

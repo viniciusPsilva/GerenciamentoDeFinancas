@@ -6,6 +6,7 @@ import br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.dto.DefaultErrorD
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.gasto.GastoNotFoundException;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.fixture.GastoFixture;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.GastoDto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Gasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.GastoService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -55,8 +56,10 @@ public class GastoControllerTest {
     public void deveCadastrarUmGasto() throws Exception {
 
         GastoDto gastoDto = Fixture.from(GastoDto.class).gimme("gasto");
+        Gasto gasto = Fixture.from(Gasto.class).gimme("gasto");
 
-        when(gastoService.cadastrarGasto(any(GastoDto.class))).thenReturn(gastoDto);
+
+        when(gastoService.cadastrarGasto(any(Gasto.class))).thenReturn(gasto);
 
         MvcResult mvcResult = mockMvc.perform(post("/financas/gasto")
                 .accept(MediaType.APPLICATION_JSON)
@@ -72,9 +75,9 @@ public class GastoControllerTest {
     @Test
     public void deveListarGastos() throws Exception {
 
-        GastoDto gastoDto = Fixture.from(GastoDto.class).gimme("gasto");
+        Gasto gasto = Fixture.from(Gasto.class).gimme("gasto");
 
-        when(gastoService.listarGastos()).thenReturn(List.of(gastoDto));
+        when(gastoService.listarGastos()).thenReturn(List.of(gasto));
 
         MvcResult mvcResult = mockMvc.perform(get("/financas/gasto")
                 .accept(MediaType.APPLICATION_JSON)
@@ -87,19 +90,19 @@ public class GastoControllerTest {
         }).get(0);
 
         Assertions.assertEquals(HttpStatus.OK.value(), response.getStatus());
-        Assertions.assertEquals(gastoDto.getId(), responseObject.getId());
-        Assertions.assertEquals(gastoDto.getNome(), responseObject.getNome());
-        Assertions.assertEquals(gastoDto.getDescricao(), responseObject.getDescricao());
-        Assertions.assertEquals(gastoDto.getStatus(), responseObject.getStatus());
-        Assertions.assertEquals(gastoDto.getIdPlanoDeGasto(), responseObject.getIdPlanoDeGasto());
-        Assertions.assertEquals(gastoDto.getIdCategoria(), responseObject.getIdCategoria());
-        Assertions.assertEquals(gastoDto.getDataCriacao(), responseObject.getDataCriacao());
-        Assertions.assertEquals(gastoDto.getMesReferencia(), responseObject.getMesReferencia());
-        Assertions.assertEquals(gastoDto.getDataVencimento(), responseObject.getDataVencimento());
-        Assertions.assertEquals(gastoDto.getValor(), responseObject.getValor());
-        Assertions.assertEquals(gastoDto.getParcelaAtual(), responseObject.getParcelaAtual());
-        Assertions.assertEquals(gastoDto.getTotalParcelas(), responseObject.getTotalParcelas());
-        Assertions.assertEquals(gastoDto.getTipo(), responseObject.getTipo());
+        Assertions.assertEquals(gasto.getId(), responseObject.getId());
+        Assertions.assertEquals(gasto.getNome(), responseObject.getNome());
+        Assertions.assertEquals(gasto.getDescricao(), responseObject.getDescricao());
+        Assertions.assertEquals(gasto.getStatus(), responseObject.getStatus());
+        Assertions.assertEquals(gasto.getPlanoDeGasto().getId(), responseObject.getIdPlanoDeGasto());
+        Assertions.assertEquals(gasto.getCategoria().getId(), responseObject.getIdCategoria());
+        Assertions.assertEquals(gasto.getDataCriacao(), responseObject.getDataCriacao());
+        Assertions.assertEquals(gasto.getMesReferencia(), responseObject.getMesReferencia());
+        Assertions.assertEquals(gasto.getDataVencimento(), responseObject.getDataVencimento());
+        Assertions.assertEquals(gasto.getValor(), responseObject.getValor());
+        Assertions.assertEquals(gasto.getParcelaAtual(), responseObject.getParcelaAtual());
+        Assertions.assertEquals(gasto.getTotalParcelas(), responseObject.getTotalParcelas());
+        Assertions.assertEquals(gasto.getTipo(), responseObject.getTipo());
 
 
     }
@@ -107,9 +110,9 @@ public class GastoControllerTest {
     @Test
     public void deveBuscarGastoPorId() throws Exception {
 
-        GastoDto gastoDto = Fixture.from(GastoDto.class).gimme("gasto");
+        Gasto gasto = Fixture.from(Gasto.class).gimme("gasto");
 
-        when(gastoService.buscar(any(Integer.class))).thenReturn(gastoDto);
+        when(gastoService.buscar(any(Integer.class))).thenReturn(gasto);
 
         MvcResult mvcResult = mockMvc.perform(get("/financas/gasto/1")
                 .accept(MediaType.APPLICATION_JSON)
@@ -122,25 +125,23 @@ public class GastoControllerTest {
         });
 
         Assertions.assertEquals(HttpStatus.OK.value(), response.getStatus());
-        Assertions.assertEquals(gastoDto.getId(), responseObject.getId());
-        Assertions.assertEquals(gastoDto.getNome(), responseObject.getNome());
-        Assertions.assertEquals(gastoDto.getDescricao(), responseObject.getDescricao());
-        Assertions.assertEquals(gastoDto.getStatus(), responseObject.getStatus());
-        Assertions.assertEquals(gastoDto.getIdPlanoDeGasto(), responseObject.getIdPlanoDeGasto());
-        Assertions.assertEquals(gastoDto.getIdCategoria(), responseObject.getIdCategoria());
-        Assertions.assertEquals(gastoDto.getDataCriacao(), responseObject.getDataCriacao());
-        Assertions.assertEquals(gastoDto.getMesReferencia(), responseObject.getMesReferencia());
-        Assertions.assertEquals(gastoDto.getDataVencimento(), responseObject.getDataVencimento());
-        Assertions.assertEquals(gastoDto.getValor(), responseObject.getValor());
-        Assertions.assertEquals(gastoDto.getParcelaAtual(), responseObject.getParcelaAtual());
-        Assertions.assertEquals(gastoDto.getTotalParcelas(), responseObject.getTotalParcelas());
-        Assertions.assertEquals(gastoDto.getTipo(), responseObject.getTipo());
+        Assertions.assertEquals(gasto.getId(), responseObject.getId());
+        Assertions.assertEquals(gasto.getNome(), responseObject.getNome());
+        Assertions.assertEquals(gasto.getDescricao(), responseObject.getDescricao());
+        Assertions.assertEquals(gasto.getStatus(), responseObject.getStatus());
+        Assertions.assertEquals(gasto.getPlanoDeGasto().getId(), responseObject.getIdPlanoDeGasto());
+        Assertions.assertEquals(gasto.getCategoria().getId(), responseObject.getIdCategoria());
+        Assertions.assertEquals(gasto.getDataCriacao(), responseObject.getDataCriacao());
+        Assertions.assertEquals(gasto.getMesReferencia(), responseObject.getMesReferencia());
+        Assertions.assertEquals(gasto.getDataVencimento(), responseObject.getDataVencimento());
+        Assertions.assertEquals(gasto.getValor(), responseObject.getValor());
+        Assertions.assertEquals(gasto.getParcelaAtual(), responseObject.getParcelaAtual());
+        Assertions.assertEquals(gasto.getTotalParcelas(), responseObject.getTotalParcelas());
+        Assertions.assertEquals(gasto.getTipo(), responseObject.getTipo());
     }
 
     @Test
     public void deveRetornarBadRequestQuandoGastoNaoExistir() throws Exception {
-
-        GastoDto gastoDto = Fixture.from(GastoDto.class).gimme("gasto");
 
         final String expectedErrorMessage = "O gasto com id informado nao foi encontrado";
         when(gastoService.buscar(any(Integer.class))).thenThrow(new GastoNotFoundException(expectedErrorMessage));

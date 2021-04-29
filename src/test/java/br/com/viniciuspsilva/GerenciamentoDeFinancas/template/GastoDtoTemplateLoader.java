@@ -4,10 +4,10 @@ import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.GastoDto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.MesReferencia;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Prioridade;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusGasto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.Tipo;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Prioridade;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusGasto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Tipo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

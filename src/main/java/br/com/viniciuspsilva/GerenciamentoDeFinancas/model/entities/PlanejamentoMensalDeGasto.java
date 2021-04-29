@@ -1,7 +1,7 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.MesReferencia;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enumerations.StatusPlano;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusPlano;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,7 +15,7 @@ public class PlanejamentoMensalDeGasto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_plano")
-    private Integer Id;
+    private Integer id;
 
     @Column(nullable = false, length = 60, unique = true)
     private String titulo;
@@ -39,6 +39,6 @@ public class PlanejamentoMensalDeGasto {
     private LocalDate dataCriacao = LocalDate.now();
 
     @Column(updatable = false)
-    private Integer id_Usuario;
+    private Integer idUsuario;
 
 }
