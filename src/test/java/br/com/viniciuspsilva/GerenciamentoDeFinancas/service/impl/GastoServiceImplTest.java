@@ -112,4 +112,14 @@ public class GastoServiceImplTest {
 
     }
 
+    @Test
+    public void deveDeletarUmGastoPorId(){
+        Mockito.doNothing().when(repository).deleteById(any(Integer.class));
+
+        final Integer id = 1;
+        repository.deleteById(id);
+
+        Mockito.verify(repository, Mockito.times(1)).deleteById(any(Integer.class));
+    }
+
 }

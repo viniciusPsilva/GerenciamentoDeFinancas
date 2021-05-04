@@ -18,38 +18,28 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class GastoDto {
-
-    @JsonIgnoreProperties
-    private Integer id;
+public class GastoUpdatedDto {
 
     @Size(min = 3, max = 120)
-    @NotNull
     private String nome;
 
     @Size(min = 3, max = 255)
-    @NotNull
     private String descricao;
 
     @Digits(integer = 10, fraction = 2)
-    @NotNull
     private BigDecimal valor;
 
     @JsonProperty(value = "mes_referencia")
-    @NotNull
     private MesReferencia mesReferencia;
 
     @JsonProperty(value = "data_vencimento")
     @Future
     private LocalDate dataVencimento;
 
-    @NotNull
     private Tipo tipo;
 
-    @NotNull
     private StatusGasto status;
 
-    @NotNull
     private Prioridade prioridade;
 
     @JsonProperty(value = "total_parcelas")
@@ -60,13 +50,9 @@ public class GastoDto {
     @Digits(integer = 2, fraction = 0)
     private int parcelaAtual = 0;
 
-    private LocalDate dataCriacao = LocalDate.now();
-
     @JsonProperty(value = "id_plano")
-    @JsonIgnoreProperties
     private Integer idPlanoDeGasto;
 
     @JsonProperty(value = "id_categoria")
-    @JsonIgnoreProperties
     private Integer idCategoria;
 }
