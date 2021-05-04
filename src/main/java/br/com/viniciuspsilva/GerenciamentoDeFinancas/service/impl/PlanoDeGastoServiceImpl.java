@@ -17,15 +17,6 @@ public class PlanoDeGastoServiceImpl implements PlanoDeGastoService {
 
     @Override
     public PlanejamentoMensalDeGasto buscar(Integer id) {
-        PlanejamentoMensalDeGasto plano;
-        Optional<PlanejamentoMensalDeGasto> planoOptional = repository.findById(id);
-
-        if (planoOptional.isPresent()){
-            plano = planoOptional.get();
-        }else{
-            throw new PlanoDeGastoNotFoundException("Não foi possível encontrar o plano de gasto: "+ id);
-        }
-
-        return plano;
+        return repository.findById(id).orElseThrow(() -> new PlanoDeGastoNotFoundException("Não foi possível encontrar o plano de gasto: " + id));
     }
 }

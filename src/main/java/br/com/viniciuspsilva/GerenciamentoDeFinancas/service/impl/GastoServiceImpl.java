@@ -11,7 +11,9 @@ import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Prioridade;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusGasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Tipo;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.GastoMapper;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.CategoriaService;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.GastoService;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.PlanoDeGastoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -31,6 +33,10 @@ import java.util.Optional;
 public class GastoServiceImpl implements GastoService {
 
     private final GastoRepository repository;
+
+    private final PlanoDeGastoService planoDeGastoService;
+
+    private final CategoriaService categoriaService;
 
     private final GastoMapper gastoMapper = GastoMapper.INSTANCE;
 
@@ -79,12 +85,14 @@ public class GastoServiceImpl implements GastoService {
         target.setTotalParcelas(source.getTotalParcelas() != 0 ? source.getTotalParcelas():target.getTotalParcelas());
         target.setParcelaAtual(source.getParcelaAtual() != 0 ? source.getParcelaAtual():target.getParcelaAtual());
 
-        if (Objects.nonNull(source.getPlanoDeGasto())){
-            target.getPlanoDeGasto().setId(source.getPlanoDeGasto().getId());
+        if (Objects.nonNull(source.getPlanoDeGasto()) && !source.getPlanoDeGasto().getId().equals(target.getPlanoDeGasto().getId())){
+            PlanejamentoMensalDeGasto planoDeGasto = planoDeGastoService.buscar(source.getPlanoDeGasto().getId());
+            target.setPlanoDeGasto(planoDeGasto);
         }
 
-        if (Objects.nonNull(source.getCategoria())){
-            target.getCategoria().setId(source.getCategoria().getId());
+        if (Objects.nonNull(source.getCategoria()) && !source.getCategoria().getId().equals(target.getCategoria().getId())){
+            Categoria categoria = categoriaService.buscar(source.getCategoria().getId());
+            target.setCategoria(categoria);
         }
 
         return target;
