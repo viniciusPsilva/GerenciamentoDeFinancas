@@ -75,6 +75,31 @@ public class GastoControllerTest {
     }
 
     @Test
+    public void deveAtualizarUmGasto() throws Exception {
+
+        GastoDto gastoDto = Fixture.from(GastoDto.class).gimme("update-gasto");
+        Gasto gasto = Fixture.from(Gasto.class).gimme("gasto");
+        gasto.setPrioridade(gastoDto.getPrioridade());
+        gasto.setNome(gastoDto.getNome());
+        gasto.setDescricao(gastoDto.getDescricao());
+
+
+        when(gastoService.atualizar(any(Gasto.class), any(Integer.class))).thenReturn(gasto);
+
+        MvcResult mvcResult = mockMvc.perform(patch("/financas/gasto/1")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(gastoDto))
+
+        ).andReturn();
+
+        MockHttpServletResponse response = mvcResult.getResponse();
+        Assertions.assertEquals(HttpStatus.OK.value(), response.getStatus());
+
+        verify(gastoService, times(1)).atualizar(any(Gasto.class), any(Integer.class));
+    }
+
+    @Test
     public void deveListarGastos() throws Exception {
 
         Gasto gasto = Fixture.from(Gasto.class).gimme("gasto");
