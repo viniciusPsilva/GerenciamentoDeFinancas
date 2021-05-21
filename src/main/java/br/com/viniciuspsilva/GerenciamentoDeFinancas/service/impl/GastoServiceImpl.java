@@ -2,29 +2,16 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.service.impl;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.gasto.GastoNotFoundException;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.GastoRepository;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.GastoDto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Categoria;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Gasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanejamentoMensalDeGasto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Prioridade;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusGasto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Tipo;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.GastoMapper;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.CategoriaService;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.GastoService;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.PlanoDeGastoService;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.PlanejamentoMensalDeGastoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.swing.table.TableRowSorter;
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -34,7 +21,7 @@ public class GastoServiceImpl implements GastoService {
 
     private final GastoRepository repository;
 
-    private final PlanoDeGastoService planoDeGastoService;
+    private final PlanejamentoMensalDeGastoService planoDeGastoService;
 
     private final CategoriaService categoriaService;
 
@@ -64,7 +51,7 @@ public class GastoServiceImpl implements GastoService {
     @Override
     public Gasto atualizar(Gasto gasto, Integer id) {
         Gasto gastoEncontrado = buscar(id);
-        Gasto gastoAtualizado = updateGasto(gasto, gastoEncontrado);
+        Gasto gastoAtualizado = atualizarDadosGasto(gasto, gastoEncontrado);
         return repository.save(gastoAtualizado);
     }
 
@@ -73,7 +60,8 @@ public class GastoServiceImpl implements GastoService {
         repository.delete(buscar(id));
     }
 
-    private Gasto updateGasto(Gasto source, Gasto target) {
+    @Override
+    public Gasto atualizarDadosGasto(Gasto source, Gasto target) {
         target.setNome(source.getNome() != null ? source.getNome() : target.getNome());
         target.setDescricao(source.getDescricao() != null ? source.getDescricao() : target.getDescricao());
         target.setValor(source.getValor() != null ? source.getValor() : target.getValor());
@@ -82,8 +70,8 @@ public class GastoServiceImpl implements GastoService {
         target.setTipo(source.getTipo() != null ? source.getTipo() : target.getTipo());
         target.setStatus(source.getStatus() != null ? source.getStatus() : target.getStatus());
         target.setPrioridade(source.getPrioridade() != null ? source.getPrioridade() : target.getPrioridade());
-        target.setTotalParcelas(source.getTotalParcelas() != 0 ? source.getTotalParcelas():target.getTotalParcelas());
-        target.setParcelaAtual(source.getParcelaAtual() != 0 ? source.getParcelaAtual():target.getParcelaAtual());
+        target.setTotalParcelas(source.getTotalParcelas() != null ? source.getTotalParcelas():target.getTotalParcelas());
+        target.setParcelaAtual(source.getParcelaAtual() != null ? source.getParcelaAtual():target.getParcelaAtual());
 
         if (Objects.nonNull(source.getPlanoDeGasto()) && !source.getPlanoDeGasto().getId().equals(target.getPlanoDeGasto().getId())){
             PlanejamentoMensalDeGasto planoDeGasto = planoDeGastoService.buscar(source.getPlanoDeGasto().getId());

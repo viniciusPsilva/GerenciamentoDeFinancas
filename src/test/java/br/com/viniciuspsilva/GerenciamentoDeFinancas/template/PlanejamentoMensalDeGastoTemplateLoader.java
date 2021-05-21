@@ -26,5 +26,19 @@ public class PlanejamentoMensalDeGastoTemplateLoader implements TemplateLoader {
                 add("idUsuario", 1);
             }
         });
+
+        Fixture.of(PlanejamentoMensalDeGasto.class).addTemplate("OK_id_2", new Rule(){
+            {
+                add("id", 2);
+                add("titulo", "Fevereiro");
+                add("descricao", "planejamento de fevereiro");
+                add("valorPlanejado", new BigDecimal(350));
+                add("totalGasto", new BigDecimal(175));
+                add("status", StatusPlano.OK);
+                add("mesReferencia", MesReferencia.FEVEREIRO);
+                add("dataCriacao", LocalDate.of(2021, 2,1));
+                add("idUsuario", 1);
+            }
+        });
     }
 }

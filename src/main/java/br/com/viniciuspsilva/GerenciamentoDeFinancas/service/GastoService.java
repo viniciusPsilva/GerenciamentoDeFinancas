@@ -8,5 +8,5 @@ public interface GastoService {
     Gasto buscar(Integer id);
     Gasto atualizar(Gasto gasto, Integer id);
     void deletar(Integer id);
-
+    Gasto atualizarDadosGasto(Gasto source, Gasto target);
 }

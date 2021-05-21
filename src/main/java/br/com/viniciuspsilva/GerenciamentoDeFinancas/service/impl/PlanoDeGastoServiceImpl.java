@@ -3,15 +3,13 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.service.impl;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.planoDeGasto.PlanoDeGastoNotFoundException;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.PlanoDeGastoRepository;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanejamentoMensalDeGasto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.PlanoDeGastoService;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.PlanejamentoMensalDeGastoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @RequiredArgsConstructor
 @Service
-public class PlanoDeGastoServiceImpl implements PlanoDeGastoService {
+public class PlanoDeGastoServiceImpl implements PlanejamentoMensalDeGastoService {
 
     private final PlanoDeGastoRepository repository;
 
