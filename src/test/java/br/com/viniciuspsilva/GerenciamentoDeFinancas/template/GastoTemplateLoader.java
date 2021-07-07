@@ -33,5 +33,22 @@ public class GastoTemplateLoader implements TemplateLoader {
             add("planoDeGasto", one(PlanejamentoMensalDeGasto.class, "OK"));
             add("categoria", one(Categoria.class, "valid"));
         }});
+
+        Fixture.of(Gasto.class).addTemplate("target", new Rule(){{
+            add("id", 1);
+            add("nome", "Gasto");
+            add("descricao", "compra");
+            add("valor", BigDecimal.valueOf(2.00));
+            add("mesReferencia", MesReferencia.FEVEREIRO);
+            add("dataVencimento", LocalDate.now().plusDays(3));
+            add("tipo", Tipo.PARCELADO);
+            add("status", StatusGasto.EM_ABERTO);
+            add("prioridade", Prioridade.DESPRIORIZADO);
+            add("totalParcelas", 12);
+            add("parcelaAtual", 2);
+            add("dataCriacao", LocalDate.now());
+            add("planoDeGasto", one(PlanejamentoMensalDeGasto.class, "OK"));
+            add("categoria", one(Categoria.class, "valid"));
+        }});
     }
 }

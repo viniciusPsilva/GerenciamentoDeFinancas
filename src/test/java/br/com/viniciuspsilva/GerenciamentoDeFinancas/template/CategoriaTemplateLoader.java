@@ -18,5 +18,14 @@ public class CategoriaTemplateLoader implements TemplateLoader {
                 add("dataCriacao", LocalDate.of(2021, 1, 1));
             }
         });
+
+        Fixture.of(Categoria.class).addTemplate("valid_id_2", new Rule() {
+            {
+                add("id", 2);
+                add("nome", "Educação");
+                add("descricao", "gastos com Educação");
+                add("dataCriacao", LocalDate.of(2021, 1, 1));
+            }
+        });
     }
 }

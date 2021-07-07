@@ -46,10 +46,10 @@ public class Gasto {
     private Prioridade prioridade;
 
     @Column(nullable = true)
-    private int totalParcelas;
+    private Integer totalParcelas;
 
     @Column(nullable = true)
-    private int parcelaAtual;
+    private Integer parcelaAtual;
 
     @Column(updatable = false)
     private LocalDate dataCriacao;

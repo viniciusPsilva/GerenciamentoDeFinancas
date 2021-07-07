@@ -65,5 +65,12 @@ public class GastoDtoTemplateLoader implements TemplateLoader {
             add("idPlanoDeGasto", 1);
             add("idCategoria", 1);
         }});
+
+        Fixture.of(GastoDto.class).addTemplate("update-gasto", new Rule() {{
+            add("nome", "Gasto na Padaria");
+            add("descricao", "compra de pao e leite na padaria");
+            add("prioridade", Prioridade.MEDIA);
+        }});
+
     }
 }

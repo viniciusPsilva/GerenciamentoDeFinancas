@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.engine.TestExecutionResult;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -24,13 +25,12 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.net.URI;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-
-import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -70,6 +70,33 @@ public class GastoControllerTest {
 
         MockHttpServletResponse response = mvcResult.getResponse();
         Assertions.assertEquals(HttpStatus.CREATED.value(), response.getStatus());
+
+        verify(gastoService, times(1)).cadastrarGasto(any(Gasto.class));
+    }
+
+    @Test
+    public void deveAtualizarUmGasto() throws Exception {
+
+        GastoDto gastoDto = Fixture.from(GastoDto.class).gimme("update-gasto");
+        Gasto gasto = Fixture.from(Gasto.class).gimme("gasto");
+        gasto.setPrioridade(gastoDto.getPrioridade());
+        gasto.setNome(gastoDto.getNome());
+        gasto.setDescricao(gastoDto.getDescricao());
+
+
+        when(gastoService.atualizar(any(Gasto.class), any(Integer.class))).thenReturn(gasto);
+
+        MvcResult mvcResult = mockMvc.perform(patch("/financas/gasto/1")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(gastoDto))
+
+        ).andReturn();
+
+        MockHttpServletResponse response = mvcResult.getResponse();
+        Assertions.assertEquals(HttpStatus.OK.value(), response.getStatus());
+
+        verify(gastoService, times(1)).atualizar(any(Gasto.class), any(Integer.class));
     }
 
     @Test
@@ -104,6 +131,7 @@ public class GastoControllerTest {
         Assertions.assertEquals(gasto.getTotalParcelas(), responseObject.getTotalParcelas());
         Assertions.assertEquals(gasto.getTipo(), responseObject.getTipo());
 
+        verify(gastoService, times(1)).listarGastos();
 
     }
 
@@ -138,6 +166,8 @@ public class GastoControllerTest {
         Assertions.assertEquals(gasto.getParcelaAtual(), responseObject.getParcelaAtual());
         Assertions.assertEquals(gasto.getTotalParcelas(), responseObject.getTotalParcelas());
         Assertions.assertEquals(gasto.getTipo(), responseObject.getTipo());
+
+        verify(gastoService, times(1)).buscar(any(Integer.class));
     }
 
     @Test
@@ -160,7 +190,23 @@ public class GastoControllerTest {
         Assertions.assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatus());
         Assertions.assertEquals(expectedErrorMessage, responseObject.getMensagem());
 
+        verify(gastoService, times(1)).buscar(any(Integer.class));
+
     }
 
+    @Test
+    public void deveDeletarUmGastoPeloId() throws Exception {
+        doNothing().when(gastoService).deletar(any(Integer.class));
+
+        MvcResult mvcResult = mockMvc.perform(delete("/financas/gasto/1")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+        ).andReturn();
+
+        MockHttpServletResponse response = mvcResult.getResponse();
+        Assertions.assertEquals(HttpStatus.NO_CONTENT.value(), response.getStatus());
+
+        Mockito.verify(gastoService, times(1)).deletar(any(Integer.class));
+    }
 
 }
