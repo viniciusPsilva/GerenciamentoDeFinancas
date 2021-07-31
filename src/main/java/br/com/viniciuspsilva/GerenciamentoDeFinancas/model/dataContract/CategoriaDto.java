@@ -15,6 +15,4 @@ public class CategoriaDto {
 
     @Size(min = 3, max = 255)
     private String descricao;
-
-    private String dataCriacao;
 }
