@@ -13,14 +13,12 @@ public class CategoriaMapperTest {
     @Test
     public void mapToCategoria(){
         CategoriaDto categoriaDto = new CategoriaDto();
-        categoriaDto.setDataCriacao("2021-02-13");
         categoriaDto.setNome("Alimentação");
         categoriaDto.setDescricao("Categoria destinada para gastos com Alimentação");
         Categoria target = CategoriaMapper.INSTANCE.mapFromCategoriaDto(categoriaDto);
 
         Assertions.assertEquals(categoriaDto.getNome(), target.getNome());
         Assertions.assertEquals(categoriaDto.getDescricao(), target.getDescricao());
-        Assertions.assertEquals(LocalDate.parse(categoriaDto.getDataCriacao()), target.getDataCriacao());
     }
 
     @Test
@@ -33,6 +31,5 @@ public class CategoriaMapperTest {
         CategoriaDto target = CategoriaMapper.INSTANCE.mapFromCategoria(source);
         Assertions.assertEquals(source.getNome(), target.getNome());
         Assertions.assertEquals(source.getDescricao(), target.getDescricao());
-        Assertions.assertEquals(source.getDataCriacao(), LocalDate.parse(target.getDataCriacao()));
     }
 }
