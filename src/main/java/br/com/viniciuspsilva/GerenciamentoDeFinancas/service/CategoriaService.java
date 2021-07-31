@@ -7,7 +7,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 
 public interface CategoriaService {
 
-    Categoria cadastrar(Categoria categoriaDto);
+    Categoria cadastrar(Categoria categoria);
 
     Categoria buscar(Integer id);
 

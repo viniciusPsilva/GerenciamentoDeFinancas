@@ -14,8 +14,9 @@ public class CategoriaServiceImpl implements CategoriaService {
     private CategoriaRepository repository;
 
     @Override
-    public Categoria cadastrar(Categoria categoriaDto) {
-        return null;
+    public Categoria cadastrar(Categoria categoria)
+    {
+        return repository.save(categoria);
     }
 
     @Override

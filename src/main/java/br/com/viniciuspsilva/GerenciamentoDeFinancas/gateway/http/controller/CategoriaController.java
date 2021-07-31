@@ -1,27 +1,38 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.http.controller;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.CategoriaRepository;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.CategoriaDto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Categoria;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.CategoriaMapper;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.CategoriaService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/financas/categoria")
-@RequiredArgsConstructor
 public class CategoriaController {
 
-    public final CategoriaService categoriaService;
+    @Autowired
+    public CategoriaService categoriaService;
 
-    public final CategoriaRepository repository;
+    @Autowired
+    public CategoriaRepository repository;
 
     @GetMapping
-    public ResponseEntity listarCategoria(){
+    public ResponseEntity<?> listarCategoria() {
         Iterable<Categoria> all = repository.findAll();
         return ResponseEntity.ok(all);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> cadastrar(@RequestBody @Valid CategoriaDto categoriaDto) {
+        Categoria categoria = CategoriaMapper.INSTANCE.mapFromCategoriaDto(categoriaDto);
+        URI location = URI.create("financas/categoria" + categoriaService.cadastrar(categoria).getId());
+        return ResponseEntity.created(location).build();
     }
 
 }
