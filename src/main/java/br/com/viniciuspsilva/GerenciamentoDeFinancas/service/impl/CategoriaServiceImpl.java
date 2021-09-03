@@ -24,7 +24,7 @@ public class CategoriaServiceImpl implements CategoriaService {
         try {
             return repository.save(categoria);
         }catch (Exception ex){
-            throw new CategoriaException("Erro ao cadastrar Categoria");
+            throw new CategoriaException("Erro ao cadastrar Categoria", ex);
         }
     }
 
