@@ -60,6 +60,6 @@ public class GastoEntity {
 
     @ManyToOne(targetEntity = CategoriaEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "id_categoria", name = "id_categoria")
-    private CategoriaEntity categoriaEntity;
+    private CategoriaEntity categoria;
 
 }

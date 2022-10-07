@@ -2,6 +2,7 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.http.controller;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.CategoriaRepository;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.CategoriaDto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.Categoria;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.CategoriaEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.CategoriaMapper;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.CategoriaService;
@@ -30,7 +31,8 @@ public class CategoriaController {
 
     @PostMapping
     public ResponseEntity<?> cadastrar(@RequestBody @Valid CategoriaDto categoriaDto) {
-        CategoriaEntity categoriaEntity = CategoriaMapper.INSTANCE.mapFromCategoriaDto(categoriaDto);
+        Categoria categoria = CategoriaMapper.INSTANCE.mapFromCategoriaDto(categoriaDto);
+        CategoriaEntity categoriaEntity = CategoriaMapper.INSTANCE.mapToEntity(categoria);
         URI location = URI.create("financas/categoria" + categoriaService.cadastrar(categoriaEntity).getId());
         return ResponseEntity.created(location).build();
     }

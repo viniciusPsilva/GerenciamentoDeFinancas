@@ -118,7 +118,7 @@ public class GastoControllerTest {
         Assertions.assertEquals(gastoEntity.getDescricao(), responseObject.getDescricao());
         Assertions.assertEquals(gastoEntity.getStatus(), responseObject.getStatus());
         Assertions.assertEquals(gastoEntity.getPlanoDeGasto().getId(), responseObject.getIdPlanoDeGasto());
-        Assertions.assertEquals(gastoEntity.getCategoriaEntity().getId(), responseObject.getIdCategoria());
+        Assertions.assertEquals(gastoEntity.getCategoria().getId(), responseObject.getIdCategoria());
         Assertions.assertEquals(gastoEntity.getDataCriacao(), responseObject.getDataCriacao());
         Assertions.assertEquals(gastoEntity.getMesReferencia(), responseObject.getMesReferencia());
         Assertions.assertEquals(gastoEntity.getDataVencimento(), responseObject.getDataVencimento());
@@ -145,7 +145,7 @@ public class GastoControllerTest {
 
         MockHttpServletResponse response = mvcResult.getResponse();
         String responseBody = response.getContentAsString();
-        GastoDto responseObject = objectMapper.readValue(responseBody, new TypeReference<GastoDto>() {
+        GastoDto responseObject = objectMapper.readValue(responseBody, new TypeReference<>() {
         });
 
         Assertions.assertEquals(HttpStatus.OK.value(), response.getStatus());
@@ -154,7 +154,7 @@ public class GastoControllerTest {
         Assertions.assertEquals(gastoEntity.getDescricao(), responseObject.getDescricao());
         Assertions.assertEquals(gastoEntity.getStatus(), responseObject.getStatus());
         Assertions.assertEquals(gastoEntity.getPlanoDeGasto().getId(), responseObject.getIdPlanoDeGasto());
-        Assertions.assertEquals(gastoEntity.getCategoriaEntity().getId(), responseObject.getIdCategoria());
+        Assertions.assertEquals(gastoEntity.getCategoria().getId(), responseObject.getIdCategoria());
         Assertions.assertEquals(gastoEntity.getDataCriacao(), responseObject.getDataCriacao());
         Assertions.assertEquals(gastoEntity.getMesReferencia(), responseObject.getMesReferencia());
         Assertions.assertEquals(gastoEntity.getDataVencimento(), responseObject.getDataVencimento());
@@ -180,7 +180,7 @@ public class GastoControllerTest {
         MockHttpServletResponse response = mvcResult.getResponse();
         String responseBody = response.getContentAsString();
 
-        DefaultErrorDto responseObject = objectMapper.readValue(responseBody, new TypeReference<DefaultErrorDto>() {
+        DefaultErrorDto responseObject = objectMapper.readValue(responseBody, new TypeReference<>() {
         });
 
         Assertions.assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatus());

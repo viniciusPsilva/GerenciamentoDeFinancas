@@ -78,9 +78,9 @@ public class GastoServiceImpl implements GastoService {
             target.setPlanoDeGasto(planoDeGasto);
         }
 
-        if (Objects.nonNull(source.getCategoriaEntity()) && !source.getCategoriaEntity().getId().equals(target.getCategoriaEntity().getId())){
-            CategoriaEntity categoriaEntity = categoriaService.buscar(source.getCategoriaEntity().getId());
-            target.setCategoriaEntity(categoriaEntity);
+        if (Objects.nonNull(source.getCategoria()) && !source.getCategoria().getId().equals(target.getCategoria().getId())){
+            CategoriaEntity categoriaEntity = categoriaService.buscar(source.getCategoria().getId());
+            target.setCategoria(categoriaEntity);
         }
 
         return target;

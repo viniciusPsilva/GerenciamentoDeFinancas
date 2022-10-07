@@ -30,7 +30,7 @@ public abstract class GastoUpdatedMapper {
     public void afterMappingCategoria(GastoUpdatedDto source, @MappingTarget GastoEntity target) {
         final CategoriaEntity categoriaEntity = new CategoriaEntity();
         categoriaEntity.setId(source.getIdCategoria());
-        target.setCategoriaEntity(categoriaEntity);
+        target.setCategoria(categoriaEntity);
     }
 
     @AfterMapping
@@ -39,8 +39,8 @@ public abstract class GastoUpdatedMapper {
         if (Objects.nonNull(source) && Objects.nonNull(source.getPlanoDeGasto()))
             target.setIdPlanoDeGasto(source.getPlanoDeGasto().getId());
 
-        if (Objects.nonNull(source) && Objects.nonNull(source.getCategoriaEntity()))
-            target.setIdCategoria(source.getCategoriaEntity().getId());
+        if (Objects.nonNull(source) && Objects.nonNull(source.getCategoria()))
+            target.setIdCategoria(source.getCategoria().getId());
     }
 
 }

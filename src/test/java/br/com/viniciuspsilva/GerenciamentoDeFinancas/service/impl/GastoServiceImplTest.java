@@ -174,12 +174,12 @@ public class GastoServiceImplTest {
         GastoEntity source = Fixture.from(GastoEntity.class).gimme("gasto");
 
         GastoEntity target = Fixture.from(GastoEntity.class).gimme("target");
-        target.setCategoriaEntity(categoriaEntityTarget);
+        target.setCategoria(categoriaEntityTarget);
 
         GastoEntity gastoEntityAtualizado = gastoService.atualizarDadosGasto(source, target);
 
-        CategoriaEntity categoriaEntityExperada = source.getCategoriaEntity();
-        CategoriaEntity categoriaEntityAtualizada = gastoEntityAtualizado.getCategoriaEntity();
+        CategoriaEntity categoriaEntityExperada = source.getCategoria();
+        CategoriaEntity categoriaEntityAtualizada = gastoEntityAtualizado.getCategoria();
 
         assertNotNull(categoriaEntityExperada);
         assertNotNull(categoriaEntityAtualizada);

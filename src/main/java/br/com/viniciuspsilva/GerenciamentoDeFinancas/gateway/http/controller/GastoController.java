@@ -2,6 +2,7 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.http.controller;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.GastoDto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.GastoUpdatedDto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.Gasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.GastoEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.GastoMapper;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.GastoUpdatedMapper;
@@ -26,22 +27,23 @@ public class GastoController {
 
     @PostMapping
     public ResponseEntity<GastoDto> cadastrar(@RequestBody @Valid GastoDto gastoDto) {
-        GastoEntity gastoEntity = gastoMapper.mapFromGastoDto(gastoDto);
-        GastoDto gastoPersistido = gastoMapper.mapFromGasto(gastoService.cadastrarGasto(gastoEntity));
+        Gasto gasto = gastoMapper.mapFromDto(gastoDto);
+        GastoEntity gastoEntity = gastoMapper.mapToEntity(gasto);
+        Gasto gastoPersistido = gastoMapper.mapFromEntity(gastoService.cadastrarGasto(gastoEntity));
         URI uri = URI.create("financas/gasto/" + gastoPersistido.getId());
         return ResponseEntity.created(uri).body(null);
     }
 
     @GetMapping
     public ResponseEntity<Iterable<GastoDto>> listar() {
-        Iterable<GastoDto> gastos = gastoMapper.mapFromGastoList(gastoService.listarGastos());
-        return ResponseEntity.ok(gastos);
+        Iterable<Gasto> gastos = gastoMapper.mapFromEntityList(gastoService.listarGastos());
+        return ResponseEntity.ok(gastoMapper.mapToDtoList(gastos));
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<GastoDto> buscar(@PathVariable Integer id) {
-        GastoDto gasto = gastoMapper.mapFromGasto(gastoService.buscar(id));
-        return ResponseEntity.ok(gasto);
+        Gasto gasto = gastoMapper.mapFromEntity(gastoService.buscar(id));
+        return ResponseEntity.ok(gastoMapper.mapToDto(gasto));
     }
 
     @DeleteMapping(value = "/{id}")
