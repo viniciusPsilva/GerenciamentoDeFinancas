@@ -1,12 +1,12 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.service;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Gasto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.GastoEntity;
 
 public interface GastoService {
-    Gasto cadastrarGasto(Gasto gasto);
-    Iterable<Gasto> listarGastos();
-    Gasto buscar(Integer id);
-    Gasto atualizar(Gasto gasto, Integer id);
+    GastoEntity cadastrarGasto(GastoEntity gastoEntity);
+    Iterable<GastoEntity> listarGastos();
+    GastoEntity buscar(Integer id);
+    GastoEntity atualizar(GastoEntity gastoEntity, Integer id);
     void deletar(Integer id);
-    Gasto atualizarDadosGasto(Gasto source, Gasto target);
+    GastoEntity atualizarDadosGasto(GastoEntity source, GastoEntity target);
 }

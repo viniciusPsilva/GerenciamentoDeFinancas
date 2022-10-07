@@ -1,7 +1,7 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.fixture;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.GastoDto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Gasto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.GastoEntity;
 
 public class GastoFixture {
 
@@ -22,7 +22,7 @@ public class GastoFixture {
                 .build();*/
     }
 
-    public static Gasto gasto(){
+    public static GastoEntity gasto(){
         return null;
         /*return Gasto.builder()
                 .nome("Gasto Teste")

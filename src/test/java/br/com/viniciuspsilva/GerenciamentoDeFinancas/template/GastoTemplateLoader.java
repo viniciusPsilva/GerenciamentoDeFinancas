@@ -3,9 +3,9 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.template;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Categoria;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Gasto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanejamentoMensalDeGasto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.CategoriaEntity;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.GastoEntity;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanejamentoMensalDeGastoEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Prioridade;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusGasto;
@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class GastoTemplateLoader implements TemplateLoader {
     @Override
     public void load() {
-        Fixture.of(Gasto.class).addTemplate("gasto", new Rule(){{
+        Fixture.of(GastoEntity.class).addTemplate("gasto", new Rule(){{
             add("id", 1);
             add("nome", "Gasto na Padaria");
             add("descricao", "compra de pao e leite na padaria");
@@ -30,11 +30,11 @@ public class GastoTemplateLoader implements TemplateLoader {
             add("totalParcelas", 0);
             add("parcelaAtual", 0);
             add("dataCriacao", LocalDate.now());
-            add("planoDeGasto", one(PlanejamentoMensalDeGasto.class, "OK"));
-            add("categoria", one(Categoria.class, "valid"));
+            add("planoDeGasto", one(PlanejamentoMensalDeGastoEntity.class, "OK"));
+            add("categoria", one(CategoriaEntity.class, "valid"));
         }});
 
-        Fixture.of(Gasto.class).addTemplate("target", new Rule(){{
+        Fixture.of(GastoEntity.class).addTemplate("target", new Rule(){{
             add("id", 1);
             add("nome", "Gasto");
             add("descricao", "compra");
@@ -47,8 +47,8 @@ public class GastoTemplateLoader implements TemplateLoader {
             add("totalParcelas", 12);
             add("parcelaAtual", 2);
             add("dataCriacao", LocalDate.now());
-            add("planoDeGasto", one(PlanejamentoMensalDeGasto.class, "OK"));
-            add("categoria", one(Categoria.class, "valid"));
+            add("planoDeGasto", one(PlanejamentoMensalDeGastoEntity.class, "OK"));
+            add("categoria", one(CategoriaEntity.class, "valid"));
         }});
     }
 }

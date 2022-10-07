@@ -1,14 +1,11 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.service;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.CategoriaDto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Categoria;
-
-import javax.persistence.criteria.CriteriaBuilder;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.CategoriaEntity;
 
 public interface CategoriaService {
 
-    Categoria cadastrar(Categoria categoria);
+    CategoriaEntity cadastrar(CategoriaEntity categoriaEntity);
 
-    Categoria buscar(Integer id);
+    CategoriaEntity buscar(Integer id);
 
 }

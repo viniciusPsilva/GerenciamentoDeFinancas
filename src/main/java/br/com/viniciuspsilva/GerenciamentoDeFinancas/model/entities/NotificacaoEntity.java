@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class Notificacao {
+public class NotificacaoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class Notificacao {
     @Column(nullable = false, updatable = false)
     private LocalDate dataCriacao;
 
-    @ManyToOne(targetEntity = Usuario.class)
+    @ManyToOne(targetEntity = UsuarioEntity.class)
     @JoinColumn(referencedColumnName = "id_usuario")
-    private Usuario usuario;
+    private UsuarioEntity usuarioEntity;
 }

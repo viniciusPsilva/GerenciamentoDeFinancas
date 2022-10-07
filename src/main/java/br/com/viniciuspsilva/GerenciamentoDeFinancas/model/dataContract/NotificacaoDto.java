@@ -1,10 +1,9 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Usuario;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.UsuarioEntity;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
@@ -23,5 +22,5 @@ public class NotificacaoDto {
 
     private LocalDate dataCriacao;
 
-    private Usuario usuario;
+    private UsuarioEntity usuarioEntity;
 }

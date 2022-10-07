@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-public class Gasto {
+public class GastoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,12 +54,12 @@ public class Gasto {
     @Column(updatable = false)
     private LocalDate dataCriacao;
 
-    @ManyToOne(targetEntity = PlanejamentoMensalDeGasto.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = PlanejamentoMensalDeGastoEntity.class, fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id_plano", name = "id_plano")
-    private PlanejamentoMensalDeGasto planoDeGasto;
+    private PlanejamentoMensalDeGastoEntity planoDeGasto;
 
-    @ManyToOne(targetEntity = Categoria.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = CategoriaEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "id_categoria", name = "id_categoria")
-    private Categoria categoria;
+    private CategoriaEntity categoriaEntity;
 
 }

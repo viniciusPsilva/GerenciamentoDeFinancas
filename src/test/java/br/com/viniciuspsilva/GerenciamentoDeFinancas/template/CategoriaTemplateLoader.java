@@ -3,14 +3,14 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.template;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Categoria;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.CategoriaEntity;
 
 import java.time.LocalDate;
 
 public class CategoriaTemplateLoader implements TemplateLoader {
     @Override
     public void load() {
-        Fixture.of(Categoria.class).addTemplate("valid", new Rule() {
+        Fixture.of(CategoriaEntity.class).addTemplate("valid", new Rule() {
             {
                 add("id", 1);
                 add("nome", "Lazer");
@@ -19,7 +19,7 @@ public class CategoriaTemplateLoader implements TemplateLoader {
             }
         });
 
-        Fixture.of(Categoria.class).addTemplate("valid_id_2", new Rule() {
+        Fixture.of(CategoriaEntity.class).addTemplate("valid_id_2", new Rule() {
             {
                 add("id", 2);
                 add("nome", "Educação");
