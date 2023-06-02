@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 @Setter
 @Getter
-@Entity
+@Entity(name = "planejamento_mensal_de_gasto")
 public class PlanejamentoMensalDeGastoEntity {
 
     @Id

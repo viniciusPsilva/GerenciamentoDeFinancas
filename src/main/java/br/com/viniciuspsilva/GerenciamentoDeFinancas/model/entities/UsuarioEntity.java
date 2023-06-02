@@ -3,7 +3,7 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
+@Entity(name = "usuario")
 public class UsuarioEntity {
 
     @Id
