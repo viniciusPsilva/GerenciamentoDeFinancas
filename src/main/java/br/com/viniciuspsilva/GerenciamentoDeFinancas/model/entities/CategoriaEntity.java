@@ -8,8 +8,8 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@Entity
-public class Categoria {
+@Entity(name = "categoria")
+public class CategoriaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

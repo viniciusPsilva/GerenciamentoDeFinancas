@@ -1,9 +1,9 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.service;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanejamentoMensalDeGasto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanejamentoMensalDeGastoEntity;
 
 public interface PlanejamentoMensalDeGastoService {
 
-    PlanejamentoMensalDeGasto buscar(Integer id);
+    PlanejamentoMensalDeGastoEntity buscar(Integer id);
 
 }

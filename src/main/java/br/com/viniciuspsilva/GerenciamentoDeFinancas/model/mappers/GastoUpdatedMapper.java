@@ -1,10 +1,9 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.GastoDto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.GastoUpdatedDto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Categoria;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Gasto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanejamentoMensalDeGasto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.CategoriaEntity;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.GastoEntity;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanejamentoMensalDeGastoEntity;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -16,26 +15,26 @@ import java.util.Objects;
 public abstract class GastoUpdatedMapper {
     public static GastoUpdatedMapper INSTANCE = Mappers.getMapper(GastoUpdatedMapper.class);
 
-    public abstract GastoUpdatedDto mapFromGasto(Gasto source);
+    public abstract GastoUpdatedDto mapFromGasto(GastoEntity source);
 
-    public abstract Gasto mapFromGastoUpdatedDto(GastoUpdatedDto source);
+    public abstract GastoEntity mapFromGastoUpdatedDto(GastoUpdatedDto source);
 
     @AfterMapping
-    public void afterMappingPlanoDeGasto(final GastoUpdatedDto source, @MappingTarget final Gasto target) {
-        final PlanejamentoMensalDeGasto planoDeGasto = new PlanejamentoMensalDeGasto();
+    public void afterMappingPlanoDeGasto(final GastoUpdatedDto source, @MappingTarget final GastoEntity target) {
+        final PlanejamentoMensalDeGastoEntity planoDeGasto = new PlanejamentoMensalDeGastoEntity();
         planoDeGasto.setId(source.getIdPlanoDeGasto());
         target.setPlanoDeGasto(planoDeGasto);
     }
 
     @AfterMapping
-    public void afterMappingCategoria(GastoUpdatedDto source, @MappingTarget Gasto target) {
-        final Categoria categoria = new Categoria();
-        categoria.setId(source.getIdCategoria());
-        target.setCategoria(categoria);
+    public void afterMappingCategoria(GastoUpdatedDto source, @MappingTarget GastoEntity target) {
+        final CategoriaEntity categoriaEntity = new CategoriaEntity();
+        categoriaEntity.setId(source.getIdCategoria());
+        target.setCategoria(categoriaEntity);
     }
 
     @AfterMapping
-    public void afterMappingGastoDto(Gasto source, @MappingTarget GastoUpdatedDto target){
+    public void afterMappingGastoDto(GastoEntity source, @MappingTarget GastoUpdatedDto target){
 
         if (Objects.nonNull(source) && Objects.nonNull(source.getPlanoDeGasto()))
             target.setIdPlanoDeGasto(source.getPlanoDeGasto().getId());

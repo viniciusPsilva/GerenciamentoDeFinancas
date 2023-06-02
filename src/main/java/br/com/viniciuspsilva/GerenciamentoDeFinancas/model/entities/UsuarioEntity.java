@@ -3,8 +3,8 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-public class Usuario {
+@Entity(name = "usuario")
+public class UsuarioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

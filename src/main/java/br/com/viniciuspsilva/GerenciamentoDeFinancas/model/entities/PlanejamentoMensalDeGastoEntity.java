@@ -9,8 +9,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 @Setter
 @Getter
-@Entity
-public class PlanejamentoMensalDeGasto {
+@Entity(name = "planejamento_mensal_de_gasto")
+public class PlanejamentoMensalDeGastoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

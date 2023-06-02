@@ -5,7 +5,7 @@ import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.categoria.CategoriaException;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.categoria.CategoriaNotFoundException;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.CategoriaRepository;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Categoria;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.CategoriaEntity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,27 +35,27 @@ public class CategoriaServiceImplTest {
 
     @Test
     public void deveCadastrarCategoria(){
-        Categoria categoria = Fixture.from(Categoria.class).gimme("valid");
-        Mockito.when(repository.save(any(Categoria.class))).thenReturn(categoria);
+        CategoriaEntity categoriaEntity = Fixture.from(CategoriaEntity.class).gimme("valid");
+        Mockito.when(repository.save(any(CategoriaEntity.class))).thenReturn(categoriaEntity);
 
-        Categoria categoriaCadastrada = service.cadastrar(categoria);
+        CategoriaEntity categoriaEntityCadastrada = service.cadastrar(categoriaEntity);
 
-        Assertions.assertNotNull(categoriaCadastrada);
-        Assertions.assertEquals(categoria.getId(), categoriaCadastrada.getId());
-        Assertions.assertEquals(categoria.getDescricao(), categoriaCadastrada.getDescricao());
-        Assertions.assertEquals(categoria.getNome(), categoriaCadastrada.getNome());
-        Assertions.assertEquals(categoria.getDataCriacao(), categoriaCadastrada.getDataCriacao());
+        Assertions.assertNotNull(categoriaEntityCadastrada);
+        Assertions.assertEquals(categoriaEntity.getId(), categoriaEntityCadastrada.getId());
+        Assertions.assertEquals(categoriaEntity.getDescricao(), categoriaEntityCadastrada.getDescricao());
+        Assertions.assertEquals(categoriaEntity.getNome(), categoriaEntityCadastrada.getNome());
+        Assertions.assertEquals(categoriaEntity.getDataCriacao(), categoriaEntityCadastrada.getDataCriacao());
     }
 
     @Test
     public void deveLancarCategoriaExceptionAoCadastrarCategoria(){
-        Categoria categoria = Fixture.from(Categoria.class).gimme("valid");
+        CategoriaEntity categoriaEntity = Fixture.from(CategoriaEntity.class).gimme("valid");
         final String expectedException = "Erro ao cadastrar Categoria";
 
-        Mockito.when(repository.save(any(Categoria.class))).thenThrow(new RuntimeException());
+        Mockito.when(repository.save(any(CategoriaEntity.class))).thenThrow(new RuntimeException());
 
         CategoriaException categoriaException = Assertions.assertThrows(CategoriaException.class, () -> {
-            service.cadastrar(categoria);
+            service.cadastrar(categoriaEntity);
         });
 
         Assertions.assertNotNull(categoriaException);
@@ -66,16 +66,16 @@ public class CategoriaServiceImplTest {
 
     @Test
     public void deveBuscarCategoriaPorId(){
-        Categoria categoria = Fixture.from(Categoria.class).gimme("valid");
-        Mockito.when(repository.findById(anyInt())).thenReturn(Optional.of(categoria));
+        CategoriaEntity categoriaEntity = Fixture.from(CategoriaEntity.class).gimme("valid");
+        Mockito.when(repository.findById(anyInt())).thenReturn(Optional.of(categoriaEntity));
 
-        Categoria categoriaEncontrada = service.buscar(1);
+        CategoriaEntity categoriaEntityEncontrada = service.buscar(1);
 
-        Assertions.assertNotNull(categoriaEncontrada);
-        Assertions.assertEquals(categoria.getId(), categoriaEncontrada.getId());
-        Assertions.assertEquals(categoria.getDescricao(), categoriaEncontrada.getDescricao());
-        Assertions.assertEquals(categoria.getNome(), categoriaEncontrada.getNome());
-        Assertions.assertEquals(categoria.getDataCriacao(), categoriaEncontrada.getDataCriacao());
+        Assertions.assertNotNull(categoriaEntityEncontrada);
+        Assertions.assertEquals(categoriaEntity.getId(), categoriaEntityEncontrada.getId());
+        Assertions.assertEquals(categoriaEntity.getDescricao(), categoriaEntityEncontrada.getDescricao());
+        Assertions.assertEquals(categoriaEntity.getNome(), categoriaEntityEncontrada.getNome());
+        Assertions.assertEquals(categoriaEntity.getDataCriacao(), categoriaEntityEncontrada.getDataCriacao());
     }
 
     @Test
