@@ -16,7 +16,7 @@ public enum MesReferencia {
     SETEMBRO("9", "setembro"),
     OUTUBRO("10", "outubro"),
     NOVEMBRO("11", "novembro"),
-    DEZEMBRO("12", "desembro");
+    DEZEMBRO("12", "dezembro");
 
     private final String codigo;
     private final String nome;
