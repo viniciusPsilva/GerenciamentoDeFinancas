@@ -1,5 +1,6 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.service.impl;
 
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.planoDeGasto.PlanoDeGastoException;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.planoDeGasto.PlanoDeGastoNotFoundException;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.PlanoDeGastoRepository;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.PlanejamentoMensalDeGasto;
@@ -7,7 +8,10 @@ import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Planejamento
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.PlanejamentoMensalDeGastoMapper;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.PlanejamentoMensalDeGastoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class PlanoDeGastoServiceImpl implements PlanejamentoMensalDeGastoService {
@@ -22,7 +26,16 @@ public class PlanoDeGastoServiceImpl implements PlanejamentoMensalDeGastoService
     @Override
     public PlanejamentoMensalDeGasto cadastrar(PlanejamentoMensalDeGasto plano) {
         final PlanejamentoMensalDeGastoEntity planejamentoMensalDeGastoEntity = PlanejamentoMensalDeGastoMapper.INSTANCE.mapToEntity(plano);
-        final PlanejamentoMensalDeGastoEntity planejamentoSalvo = repository.save(planejamentoMensalDeGastoEntity);
+        final PlanejamentoMensalDeGastoEntity planejamentoSalvo;
+
+        try {
+            planejamentoSalvo = repository.save(planejamentoMensalDeGastoEntity);
+        }catch (DataIntegrityViolationException ex){
+            throw new PlanoDeGastoException("Erro ao tentar cadastrar um plano de gasto, verifique se o plano já existe.");
+        }catch (Exception ex){
+            throw new PlanoDeGastoException("Erro ao tentar cadastrar um plano de gasto.");
+        }
+
         return PlanejamentoMensalDeGastoMapper.INSTANCE.mapFromPlanoDeGastoEntity(planejamentoSalvo);
     }
 

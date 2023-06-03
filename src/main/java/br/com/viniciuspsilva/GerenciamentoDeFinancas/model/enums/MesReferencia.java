@@ -2,6 +2,9 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums;
 
 import lombok.Getter;
 
+import java.util.Arrays;
+import java.util.HashMap;
+
 @Getter
 public enum MesReferencia {
 
@@ -20,9 +23,19 @@ public enum MesReferencia {
 
     private final String codigo;
     private final String nome;
+    static final HashMap<String, String> mesReferenciaMap = new HashMap<String, String>();
 
     MesReferencia(String codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;
     }
+
+    static {
+        Arrays.stream(MesReferencia.values()).forEach(e -> mesReferenciaMap.put(e.nome, e.nome));
+    }
+
+    public static boolean exists(final String mes){
+        return mes != null && mesReferenciaMap.containsKey(mes);
+    }
+
 }

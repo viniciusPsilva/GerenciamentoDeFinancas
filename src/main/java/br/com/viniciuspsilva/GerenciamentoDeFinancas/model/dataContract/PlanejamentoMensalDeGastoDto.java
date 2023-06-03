@@ -35,7 +35,7 @@ public class PlanejamentoMensalDeGastoDto {
 
     @JsonProperty("mes_referencia")
     @NotNull
-    private MesReferencia mesReferencia;
+    private String mesReferencia;
 
     @JsonProperty("data_criacao")
     private LocalDate dataCriacao = LocalDate.now();
