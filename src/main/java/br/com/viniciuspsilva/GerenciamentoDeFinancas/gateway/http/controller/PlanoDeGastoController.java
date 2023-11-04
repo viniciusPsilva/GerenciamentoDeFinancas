@@ -7,7 +7,6 @@ import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.Planejamento
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.PlanejamentoMensalDeGastoMapper;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.validator.PlanejamentoMensalDeGastoValidator;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.PlanejamentoMensalDeGastoService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,12 +32,19 @@ public class PlanoDeGastoController {
         return ResponseEntity.ok(planos);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<PlanejamentoMensalDeGastoDto> buscar(@PathVariable Integer id){
+
+        PlanejamentoMensalDeGasto planejamentoDeGasto = PlanejamentoMensalDeGastoMapper.INSTANCE.mapFromPlanoDeGastoEntity(planejamentoMensalDeGastoService.buscar(id));
+
+        return ResponseEntity.ok(PlanejamentoMensalDeGastoMapper.INSTANCE.mapToDto(planejamentoDeGasto));
+    }
+
     @PostMapping
-    public ResponseEntity cadastrar(@RequestBody @Valid PlanejamentoMensalDeGastoDto planoDto){
+    public ResponseEntity<PlanejamentoMensalDeGastoDto> cadastrar(@RequestBody @Valid PlanejamentoMensalDeGastoDto planoDto){
 
         validator.validate(planoDto);
 
-        //TODO resolver mapper para mepar string para enum mes referencia.
         final PlanejamentoMensalDeGasto planejamentoMensalDeGasto = PlanejamentoMensalDeGastoMapper.INSTANCE.mapFromPladoDeGastoDto(planoDto);
 
         PlanejamentoMensalDeGasto planejamentoCadastrado = planejamentoMensalDeGastoService.cadastrar(planejamentoMensalDeGasto);
