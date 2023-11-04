@@ -1,5 +1,6 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums;
 
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.ValidacaoFisicaException;
 import lombok.Getter;
 
 import java.util.Arrays;
@@ -37,5 +38,14 @@ public enum MesReferencia {
     public static boolean exists(final String mes){
         return mes != null && mesReferenciaMap.containsKey(mes);
     }
+
+    public static MesReferencia of(String mes){
+
+        return Arrays.stream(MesReferencia.values())
+                .filter(m -> m.nome.equals(mes))
+                .findFirst()
+                .orElseThrow(() -> new ValidacaoFisicaException("O mes_referencia informado não é válido."));
+    }
+
 
 }
