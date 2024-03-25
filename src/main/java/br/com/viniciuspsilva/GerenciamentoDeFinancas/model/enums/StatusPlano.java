@@ -6,7 +6,8 @@ import lombok.Getter;
 public enum StatusPlano {
 
     OK("ok"),
-    ACIMA_DO_PLANEJADO("acima do planejado");
+    ACIMA_DO_PLANEJADO("acima do planejado"),
+    NAO_PLANEJADO("não planejado");
 
     private String descricao;
 
