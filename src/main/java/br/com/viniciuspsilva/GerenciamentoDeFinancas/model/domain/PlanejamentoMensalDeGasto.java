@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class PlanejamentoMensalDeGasto {
+    private Integer id;
     private String titulo;
     private String descricao;
     private BigDecimal valorPlanejado;

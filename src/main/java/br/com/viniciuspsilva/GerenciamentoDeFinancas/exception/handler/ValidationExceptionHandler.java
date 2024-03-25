@@ -1,5 +1,6 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.handler;
 
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.ValidacaoFisicaException;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.dto.RequestValidationErrorDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,4 +31,11 @@ public class ValidationExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(List.of(errors));
     }
+
+    @ExceptionHandler(value = ValidacaoFisicaException.class)
+    public ResponseEntity<Object> handleValidationsErrors(ValidacaoFisicaException ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getErrors());
+    }
+
+
 }

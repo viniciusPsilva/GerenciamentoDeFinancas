@@ -23,7 +23,7 @@ public class PlanejamentoMensalDeGastoEntity {
     @Column(nullable = false)
     private String descricao;
 
-    @Column(nullable = false)
+    @Column
     private BigDecimal valorPlanejado;
 
     @Column(nullable = false)

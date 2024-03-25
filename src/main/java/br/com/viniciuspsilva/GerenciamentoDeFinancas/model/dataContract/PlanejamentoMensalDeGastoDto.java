@@ -1,7 +1,7 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusPlano;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,17 +21,21 @@ public class PlanejamentoMensalDeGastoDto {
     @Size(min = 3, max = 255)
     private String descricao;
 
+    @JsonProperty("valor_planejado")
     @Digits(integer = 10, fraction = 2)
     private BigDecimal valorPlanejado;
 
+    @JsonProperty("total_gasto")
     @Digits(integer = 10, fraction = 2)
     private BigDecimal totalGasto;
 
     @NotNull
     private StatusPlano status;
 
+    @JsonProperty("mes_referencia")
     @NotNull
-    private MesReferencia mesReferencia;
+    private String mesReferencia;
 
-    private LocalDate dataCriacao;
+    @JsonProperty("data_criacao")
+    private LocalDate dataCriacao = LocalDate.now();
 }

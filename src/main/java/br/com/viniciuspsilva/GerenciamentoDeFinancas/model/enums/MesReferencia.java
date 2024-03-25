@@ -1,6 +1,10 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums;
 
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.ValidacaoFisicaException;
 import lombok.Getter;
+
+import java.util.Arrays;
+import java.util.HashMap;
 
 @Getter
 public enum MesReferencia {
@@ -16,13 +20,32 @@ public enum MesReferencia {
     SETEMBRO("9", "setembro"),
     OUTUBRO("10", "outubro"),
     NOVEMBRO("11", "novembro"),
-    DEZEMBRO("12", "desembro");
+    DEZEMBRO("12", "dezembro");
 
     private final String codigo;
     private final String nome;
+    static final HashMap<String, String> mesReferenciaMap = new HashMap<String, String>();
 
     MesReferencia(String codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;
     }
+
+    static {
+        Arrays.stream(MesReferencia.values()).forEach(e -> mesReferenciaMap.put(e.nome, e.nome));
+    }
+
+    public static boolean exists(final String mes){
+        return mes != null && mesReferenciaMap.containsKey(mes);
+    }
+
+    public static MesReferencia of(String mes){
+
+        return Arrays.stream(MesReferencia.values())
+                .filter(m -> m.nome.equals(mes))
+                .findFirst()
+                .orElseThrow(() -> new ValidacaoFisicaException("O mes_referencia informado não é válido."));
+    }
+
+
 }
