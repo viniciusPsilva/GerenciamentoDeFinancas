@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 public class PlanejamentoMensalDeGastoValidator {
 
-    private final List<RequestValidationErrorDto> errors = new ArrayList<>();
+    private List<RequestValidationErrorDto> errors = new ArrayList<>();
 
     public boolean validate(PlanejamentoMensalDeGastoDto planejamentoMensalDeGastoDto){
         validateMesReferencia(planejamentoMensalDeGastoDto.getMesReferencia());
