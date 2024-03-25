@@ -1,6 +1,5 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusPlano;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
