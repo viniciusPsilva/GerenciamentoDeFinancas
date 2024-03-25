@@ -1,15 +1,19 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities;
 
-import javax.persistence.*;
+import lombok.Setter;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity(name = "usuario")
+@Setter
 public class UsuarioEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario", updatable = false)
-    private Integer id;
+    private String id;
 
     @Column(nullable = false)
     private String nome;
