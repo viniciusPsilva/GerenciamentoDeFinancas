@@ -1,15 +1,14 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Builder
 @Getter
 @Setter
 public class Usuario {
+    private String id;
     private String nome;
     private String sobreNome;
     private String apelido;
