@@ -38,3 +38,6 @@ mvnw
 mvnw.cmd
 /data/demo.mv.db
 /data/demo.trace.db
+
+##Docker data volumes
+/docker
