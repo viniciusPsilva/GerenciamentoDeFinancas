@@ -1,4 +1,4 @@
-FROM amazoncorretto:11-alpine
+FROM openjdk:11
 MAINTAINER vinicius Pereira da Silva
 ENV DATA_BASE_HOST_NAME=127.0.0.1
 ARG JAR_FILE=target/*.jar
