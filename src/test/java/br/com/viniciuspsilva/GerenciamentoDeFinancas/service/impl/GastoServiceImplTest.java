@@ -3,12 +3,16 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.service.impl;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.gasto.GastoNotFoundException;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.GastoRepositoryAdapter;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.Gasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.CategoriaEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.GastoEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.GastoRepository;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanejamentoMensalDeGastoEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.CategoriaService;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.PlanejamentoMensalDeGastoService;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.visitors.DefinirCategoriaGastoVisitor;
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,6 +22,7 @@ import org.mockito.Mockito;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,6 +39,11 @@ public class GastoServiceImplTest {
 
     @Mock
     private GastoRepository repository;
+    @Mock
+    private GastoRepositoryAdapter repositoryAdapter;
+
+    @Mock
+    private DefinirCategoriaGastoVisitor definirCategoriaGastoVisitor;
 
     @InjectMocks
     private GastoServiceImpl gastoService;
@@ -45,42 +55,43 @@ public class GastoServiceImplTest {
 
     @Test
     public void cadastrarGasto() {
-        GastoEntity gastoEntity = Fixture.from(GastoEntity.class).gimme("gasto");
+        Gasto gasto = Fixture.from(Gasto.class).gimme("valid");
 
-        Mockito.when(repository.save(any(GastoEntity.class))).thenReturn(gastoEntity);
+        Mockito.when(repositoryAdapter.cadastrar(any(Gasto.class))).thenReturn(gasto);
+        Mockito.when(definirCategoriaGastoVisitor.visit(any(Gasto.class))).thenReturn(gasto);
 
-        GastoEntity gastoEntityPersistido = gastoService.cadastrarGasto(gastoEntity);
+        Gasto gastoEntityPersistido = gastoService.cadastrarGasto(gasto);
 
         assertNotNull(gastoEntityPersistido);
-        assertEquals(gastoEntity.getNome(), gastoEntityPersistido.getNome());
-        assertEquals(gastoEntity.getDescricao(), gastoEntityPersistido.getDescricao());
-        assertEquals(gastoEntity.getValor(), gastoEntityPersistido.getValor());
-        assertEquals(gastoEntity.getTipo(), gastoEntityPersistido.getTipo());
-        assertEquals(gastoEntity.getStatus(), gastoEntityPersistido.getStatus());
-        assertEquals(gastoEntity.getPrioridade(), gastoEntityPersistido.getPrioridade());
+        assertEquals(gasto.getNome(), gastoEntityPersistido.getNome());
+        assertEquals(gasto.getDescricao(), gastoEntityPersistido.getDescricao());
+        assertEquals(gasto.getValor(), gastoEntityPersistido.getValor());
+        assertEquals(gasto.getTipo(), gastoEntityPersistido.getTipo());
+        assertEquals(gasto.getStatus(), gastoEntityPersistido.getStatus());
+        assertEquals(gasto.getPrioridade(), gastoEntityPersistido.getPrioridade());
     }
 
 
     @Test
-    public void DeveLitarGatos() {
-        GastoEntity gastoEntity = Fixture.from(GastoEntity.class).gimme("gasto");
-        Mockito.when(repository.findAll()).thenReturn(Collections.singletonList(gastoEntity));
+    public void deveLitarGatos() {
+        Gasto gasto = Fixture.from(Gasto.class).gimme("valid");
+        Mockito.when(repositoryAdapter.listarGastos()).thenReturn(Collections.singletonList(gasto));
 
-        Iterable<GastoEntity> gastos = gastoService.listarGastos();
+        List<Gasto> gastos = gastoService.listarGastos();
 
         gastos.forEach(g -> {
-            assertEquals(gastoEntity.getId(), g.getId());
-            assertEquals(gastoEntity.getNome(), g.getNome());
-            assertEquals(gastoEntity.getDescricao(), g.getDescricao());
-            assertEquals(gastoEntity.getValor(), g.getValor());
-            assertEquals(gastoEntity.getTipo(), g.getTipo());
-            assertEquals(gastoEntity.getStatus(), g.getStatus());
-            assertEquals(gastoEntity.getPrioridade(), g.getPrioridade());
-            assertEquals(gastoEntity.getMesReferencia(), g.getMesReferencia());
-            assertEquals(gastoEntity.getDataVencimento(), g.getDataVencimento());
-            assertEquals(gastoEntity.getTotalParcelas(), g.getTotalParcelas());
-            assertEquals(gastoEntity.getParcelaAtual(), g.getParcelaAtual());
-            assertEquals(gastoEntity.getDataCriacao(), g.getDataCriacao());
+            assertEquals(gasto.getId(), g.getId());
+            assertEquals(gasto.getNome(), g.getNome());
+            assertEquals(gasto.getDescricao(), g.getDescricao());
+            assertEquals(gasto.getValor(), g.getValor());
+            assertEquals(gasto.getTipo(), g.getTipo());
+            assertEquals(gasto.getStatus(), g.getStatus());
+            assertEquals(gasto.getPrioridade(), g.getPrioridade());
+            assertEquals(gasto.getMesReferencia(), g.getMesReferencia());
+            assertEquals(gasto.getDataVencimento(), g.getDataVencimento());
+            assertEquals(gasto.getTotalParcelas(), g.getTotalParcelas());
+            assertEquals(gasto.getParcelaAtual(), g.getParcelaAtual());
+            assertEquals(gasto.getDataCriacao(), g.getDataCriacao());
 
         });
     }
@@ -88,23 +99,23 @@ public class GastoServiceImplTest {
     @Test
     public void deveBuscarUmGastoApartirDeUmId() {
 
-        GastoEntity gastoEntity = Fixture.from(GastoEntity.class).gimme("gasto");
-        Mockito.when(repository.findById(any(Integer.class))).thenReturn(Optional.of(gastoEntity));
+        Gasto gasto = Fixture.from(Gasto.class).gimme("valid");
+        Mockito.when(repositoryAdapter.buscar(any(Integer.class))).thenReturn(gasto);
 
-        GastoEntity gastoEntityEncontrado = gastoService.buscar(1);
+        Gasto gastoEncontrado = gastoService.buscar(1);
 
-        assertEquals(gastoEntity.getId(), gastoEntityEncontrado.getId());
-        assertEquals(gastoEntity.getNome(), gastoEntityEncontrado.getNome());
-        assertEquals(gastoEntity.getDescricao(), gastoEntityEncontrado.getDescricao());
-        assertEquals(gastoEntity.getValor(), gastoEntityEncontrado.getValor());
-        assertEquals(gastoEntity.getTipo(), gastoEntityEncontrado.getTipo());
-        assertEquals(gastoEntity.getStatus(), gastoEntityEncontrado.getStatus());
-        assertEquals(gastoEntity.getPrioridade(), gastoEntityEncontrado.getPrioridade());
-        assertEquals(gastoEntity.getMesReferencia(), gastoEntityEncontrado.getMesReferencia());
-        assertEquals(gastoEntity.getDataVencimento(), gastoEntityEncontrado.getDataVencimento());
-        assertEquals(gastoEntity.getTotalParcelas(), gastoEntityEncontrado.getTotalParcelas());
-        assertEquals(gastoEntity.getParcelaAtual(), gastoEntityEncontrado.getParcelaAtual());
-        assertEquals(gastoEntity.getDataCriacao(), gastoEntityEncontrado.getDataCriacao());
+        assertEquals(gasto.getId(), gastoEncontrado.getId());
+        assertEquals(gasto.getNome(), gastoEncontrado.getNome());
+        assertEquals(gasto.getDescricao(), gastoEncontrado.getDescricao());
+        assertEquals(gasto.getValor(), gastoEncontrado.getValor());
+        assertEquals(gasto.getTipo(), gastoEncontrado.getTipo());
+        assertEquals(gasto.getStatus(), gastoEncontrado.getStatus());
+        assertEquals(gasto.getPrioridade(), gastoEncontrado.getPrioridade());
+        assertEquals(gasto.getMesReferencia(), gastoEncontrado.getMesReferencia());
+        assertEquals(gasto.getDataVencimento(), gastoEncontrado.getDataVencimento());
+        assertEquals(gasto.getTotalParcelas(), gastoEncontrado.getTotalParcelas());
+        assertEquals(gasto.getParcelaAtual(), gastoEncontrado.getParcelaAtual());
+        assertEquals(gasto.getDataCriacao(), gastoEncontrado.getDataCriacao());
     }
 
     @Test
@@ -112,7 +123,7 @@ public class GastoServiceImplTest {
 
         final String expectedErrorMessage = "O gasto com id informado não foi encontrado";
 
-        Mockito.when(repository.findById(any(Integer.class))).thenReturn(Optional.empty());
+        Mockito.when(repositoryAdapter.buscar(any(Integer.class))).thenThrow(new GastoNotFoundException(expectedErrorMessage));
 
         GastoNotFoundException ex = assertThrows(GastoNotFoundException.class, () -> {
             gastoService.buscar(1);
@@ -124,7 +135,7 @@ public class GastoServiceImplTest {
 
     @Test
     public void deveDeletarUmGastoPorId(){
-        Mockito.doNothing().when(repository).deleteById(any(Integer.class));
+        Mockito.doNothing().when(repositoryAdapter).deletar(any(Integer.class));
 
         final Integer id = 1;
         repository.deleteById(id);

@@ -10,6 +10,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
 import java.util.Objects;
 
 @Mapper
@@ -24,9 +25,9 @@ public abstract class GastoMapper {
 
     public abstract GastoEntity mapToEntity(Gasto gasto);
 
-    public abstract Iterable<Gasto> mapFromEntityList(Iterable<GastoEntity> source);
+    public abstract List<Gasto> mapFromEntityList(Iterable<GastoEntity> source);
 
-    public abstract Iterable<GastoDto> mapToDtoList(Iterable<Gasto> source);
+    public abstract List<GastoDto> mapToDtoList(List<Gasto> source);
 
     @AfterMapping
     public void afterMappingPlanoDeGasto(final Gasto source, @MappingTarget final GastoEntity target) {
