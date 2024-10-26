@@ -3,17 +3,16 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.template;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanejamentoMensalDeGastoEntity;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanoDeGastoEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusPlano;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class PlanejamentoMensalDeGastoTemplateLoader implements TemplateLoader {
+public class PlanoDeGastoEntityTemplateLoader implements TemplateLoader {
     @Override
     public void load() {
-        Fixture.of(PlanejamentoMensalDeGastoEntity.class).addTemplate("OK", new Rule(){
+        Fixture.of(PlanoDeGastoEntity.class).addTemplate("OK", new Rule(){
             {
                 add("id", 1);
                 add("titulo", "janeiro");
@@ -26,7 +25,7 @@ public class PlanejamentoMensalDeGastoTemplateLoader implements TemplateLoader {
             }
         });
 
-        Fixture.of(PlanejamentoMensalDeGastoEntity.class).addTemplate("OK_id_2", new Rule(){
+        Fixture.of(PlanoDeGastoEntity.class).addTemplate("OK_id_2", new Rule(){
             {
                 add("id", 2);
                 add("titulo", "Fevereiro");

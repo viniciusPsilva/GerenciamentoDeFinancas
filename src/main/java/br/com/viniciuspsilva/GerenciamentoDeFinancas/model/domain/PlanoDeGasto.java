@@ -1,6 +1,5 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusPlano;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,13 +9,12 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class PlanejamentoMensalDeGasto {
+public class PlanoDeGasto {
     private Integer id;
     private String titulo;
     private String descricao;
     private BigDecimal valorPlanejado;
     private BigDecimal totalGasto;
     private StatusPlano status;
-    private MesReferencia mesReferencia;
     private LocalDate dataCriacao;
 }

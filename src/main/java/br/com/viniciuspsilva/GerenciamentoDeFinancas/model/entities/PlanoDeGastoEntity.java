@@ -1,6 +1,5 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusPlano;
 import lombok.*;
 
@@ -9,8 +8,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 @Setter
 @Getter
-@Entity(name = "planejamento_mensal_de_gasto")
-public class PlanejamentoMensalDeGastoEntity {
+@Entity(name = "tbl01_plano_de_gasto")
+public class PlanoDeGastoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

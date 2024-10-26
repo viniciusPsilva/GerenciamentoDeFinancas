@@ -4,7 +4,7 @@ import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.GastoDto
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.Gasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.CategoriaEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.GastoEntity;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanejamentoMensalDeGastoEntity;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanoDeGastoEntity;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -31,7 +31,7 @@ public abstract class GastoMapper {
 
     @AfterMapping
     public void afterMappingPlanoDeGasto(final Gasto source, @MappingTarget final GastoEntity target) {
-        final PlanejamentoMensalDeGastoEntity planoDeGasto = new PlanejamentoMensalDeGastoEntity();
+        final PlanoDeGastoEntity planoDeGasto = new PlanoDeGastoEntity();
         planoDeGasto.setId(source.getIdPlanoDeGasto());
         target.setPlanoDeGasto(planoDeGasto);
     }

@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
-@Entity(name = "usuario")
+@Entity(name = "tbl05_usuario")
 @Setter
 public class UsuarioEntity {
 
