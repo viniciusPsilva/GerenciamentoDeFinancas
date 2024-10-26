@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.Objects;
+
 @Service
 public class PlanoDeGastoServiceImpl implements PlanoDeGastoService {
     @Autowired
@@ -42,6 +45,31 @@ public class PlanoDeGastoServiceImpl implements PlanoDeGastoService {
     public Iterable<PlanoDeGasto> listar() {
         Iterable<PlanoDeGastoEntity> planos = repository.findAll();
         return PlanoDeGastoMapper.INSTANCE.mapfromEntity(planos);
+    }
+
+    @Override
+    public PlanoDeGasto atualizar(String id, PlanoDeGasto updated) {
+
+        final PlanoDeGasto planoDeGasto = buscar(Integer.valueOf(id));
+
+        atualizarDadosPlano(planoDeGasto, updated);
+
+        PlanoDeGastoEntity planoAtualizadoPersistido = repository.save(PlanoDeGastoMapper.INSTANCE.mapToEntity(planoDeGasto));
+
+        return PlanoDeGastoMapper.INSTANCE.mapFromEntity(planoAtualizadoPersistido);
+    }
+
+    private void atualizarDadosPlano(final PlanoDeGasto planoDeGasto, final PlanoDeGasto updated){
+
+        String descricao = updated.getDescricao();
+        if (Objects.nonNull(descricao)){
+            planoDeGasto.setDescricao(descricao);
+        }
+
+        BigDecimal valorPlanejado = updated.getValorPlanejado();
+        if (Objects.nonNull(valorPlanejado)){
+            planoDeGasto.setValorPlanejado(valorPlanejado);
+        }
     }
 
 }

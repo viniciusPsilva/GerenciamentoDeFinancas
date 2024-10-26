@@ -9,5 +9,7 @@ public interface PlanoDeGastoService {
 
     Iterable<PlanoDeGasto> listar();
 
+    PlanoDeGasto atualizar(String id, PlanoDeGasto updated);
+
 
 }

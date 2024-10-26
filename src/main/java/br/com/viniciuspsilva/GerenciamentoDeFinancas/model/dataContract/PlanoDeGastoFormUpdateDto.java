@@ -13,10 +13,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class PlanejamentoMensalDeGastoDto {
-
-    @Size(min = 3, max = 120)
-    private String titulo;
+public class PlanoDeGastoFormUpdateDto {
 
     @Size(min = 3, max = 255)
     private String descricao;
@@ -24,14 +21,4 @@ public class PlanejamentoMensalDeGastoDto {
     @JsonProperty("valor_planejado")
     @Digits(integer = 10, fraction = 2)
     private BigDecimal valorPlanejado;
-
-    @JsonProperty("total_gasto")
-    @Digits(integer = 10, fraction = 2)
-    private BigDecimal totalGasto;
-
-    @NotNull
-    private StatusPlano status;
-
-    @JsonProperty("data_criacao")
-    private LocalDate dataCriacao = LocalDate.now();
 }

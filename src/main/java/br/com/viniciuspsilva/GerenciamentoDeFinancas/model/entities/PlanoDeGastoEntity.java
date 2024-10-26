@@ -34,6 +34,10 @@ public class PlanoDeGastoEntity {
     @Column(updatable = false)
     private LocalDate dataCriacao = LocalDate.now();
 
+    @Column
+    private LocalDate dataAtualizacao = LocalDate.now();
+
+
     @Column(updatable = false)
     private Integer idUsuario;
 

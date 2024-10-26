@@ -17,4 +17,5 @@ public class PlanoDeGasto {
     private BigDecimal totalGasto;
     private StatusPlano status;
     private LocalDate dataCriacao;
+    private LocalDate dataAtualizacao;
 }
