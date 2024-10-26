@@ -26,17 +26,17 @@ public class PlanoDeGastoServiceImpl implements PlanejamentoMensalDeGastoService
     @Override
     public PlanejamentoMensalDeGasto cadastrar(PlanejamentoMensalDeGasto plano) {
         final PlanejamentoMensalDeGastoEntity planejamentoMensalDeGastoEntity = PlanejamentoMensalDeGastoMapper.INSTANCE.mapToEntity(plano);
-        final PlanejamentoMensalDeGastoEntity planejamentoSalvo;
+        final PlanejamentoMensalDeGastoEntity planejamentoPersistido;
 
         try {
-            planejamentoSalvo = repository.save(planejamentoMensalDeGastoEntity);
+            planejamentoPersistido = repository.save(planejamentoMensalDeGastoEntity);
         }catch (DataIntegrityViolationException ex){
             throw new PlanoDeGastoException("Erro ao tentar cadastrar um plano de gasto, verifique se o plano já existe.");
         }catch (Exception ex){
             throw new PlanoDeGastoException("Erro ao tentar cadastrar um plano de gasto.");
         }
 
-        return PlanejamentoMensalDeGastoMapper.INSTANCE.mapFromPlanoDeGastoEntity(planejamentoSalvo);
+        return PlanejamentoMensalDeGastoMapper.INSTANCE.mapFromPlanoDeGastoEntity(planejamentoPersistido);
     }
 
 }

@@ -17,18 +17,10 @@ public abstract class PlanejamentoMensalDeGastoMapper {
 
     public abstract PlanejamentoMensalDeGasto mapFromPlanoDeGastoEntity(PlanejamentoMensalDeGastoEntity source);
 
-    @Mapping(target = "mesReferencia", source = "mesReferencia", ignore = true)
     public abstract PlanejamentoMensalDeGasto mapFromPladoDeGastoDto(PlanejamentoMensalDeGastoDto source);
 
     public abstract PlanejamentoMensalDeGastoDto mapToDto(PlanejamentoMensalDeGasto source);
 
     public abstract PlanejamentoMensalDeGastoEntity mapToEntity(PlanejamentoMensalDeGasto source);
-
-    @BeforeMapping
-    public void beforePlanejamentoMensalDeGasto(final PlanejamentoMensalDeGastoDto source, @MappingTarget final PlanejamentoMensalDeGasto target) {
-        if (MesReferencia.exists(source.getMesReferencia())){
-            target.setMesReferencia(MesReferencia.of(source.getMesReferencia()));
-        }
-    }
 
 }

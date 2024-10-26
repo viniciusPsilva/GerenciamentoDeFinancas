@@ -32,9 +32,6 @@ public class PlanejamentoMensalDeGastoEntity {
     @Enumerated(value = EnumType.STRING)
     private StatusPlano status = StatusPlano.OK;
 
-    @Column(nullable = false)
-    private MesReferencia mesReferencia;
-
     @Column(updatable = false)
     private LocalDate dataCriacao = LocalDate.now();
 

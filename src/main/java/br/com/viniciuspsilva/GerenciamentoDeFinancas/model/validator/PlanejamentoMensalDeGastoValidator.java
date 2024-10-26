@@ -16,8 +16,6 @@ public class PlanejamentoMensalDeGastoValidator {
     private List<RequestValidationErrorDto> errors = new ArrayList<>();
 
     public boolean validate(PlanejamentoMensalDeGastoDto planejamentoMensalDeGastoDto){
-        validateMesReferencia(planejamentoMensalDeGastoDto.getMesReferencia());
-
 
         if (!errors.isEmpty()){
             throw new ValidacaoFisicaException("Erro de validação física", errors);
@@ -26,13 +24,5 @@ public class PlanejamentoMensalDeGastoValidator {
         return true;
     }
 
-    private void validateMesReferencia(String mesReferencia) {
-        if (!MesReferencia.exists(mesReferencia)){
-            errors.add(RequestValidationErrorDto.builder()
-                    .field("mes_referencia")
-                    .message("O campo mes_referencia está invalido.")
-                    .build());
-        }
-    }
 
 }

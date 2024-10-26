@@ -225,7 +225,6 @@ public class GastoServiceImplTest {
         assertEquals(planoDeGastoEsperado.getId(), planoDeGastoAtualizado.getId());
         assertEquals(planoDeGastoEsperado.getTitulo(), planoDeGastoAtualizado.getTitulo());
         assertEquals(planoDeGastoEsperado.getDescricao(), planoDeGastoAtualizado.getDescricao());
-        assertEquals(planoDeGastoEsperado.getMesReferencia(), planoDeGastoAtualizado.getMesReferencia());
         assertEquals(planoDeGastoEsperado.getStatus(), planoDeGastoAtualizado.getStatus());
         assertEquals(planoDeGastoEsperado.getIdUsuario(), planoDeGastoAtualizado.getIdUsuario());
         assertEquals(planoDeGastoEsperado.getValorPlanejado(), planoDeGastoAtualizado.getValorPlanejado());

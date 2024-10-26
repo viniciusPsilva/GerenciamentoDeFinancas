@@ -21,7 +21,6 @@ public class PlanejamentoMensalDeGastoTemplateLoader implements TemplateLoader {
                 add("valorPlanejado", new BigDecimal(200));
                 add("totalGasto", new BigDecimal(175));
                 add("status", StatusPlano.OK);
-                add("mesReferencia", MesReferencia.JANEIRO);
                 add("dataCriacao", LocalDate.of(2021, 1,1));
                 add("idUsuario", 1);
             }
@@ -35,7 +34,6 @@ public class PlanejamentoMensalDeGastoTemplateLoader implements TemplateLoader {
                 add("valorPlanejado", new BigDecimal(350));
                 add("totalGasto", new BigDecimal(175));
                 add("status", StatusPlano.OK);
-                add("mesReferencia", MesReferencia.FEVEREIRO);
                 add("dataCriacao", LocalDate.of(2021, 2,1));
                 add("idUsuario", 1);
             }

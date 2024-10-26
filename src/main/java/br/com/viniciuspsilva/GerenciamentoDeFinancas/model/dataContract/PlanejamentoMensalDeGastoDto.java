@@ -32,10 +32,6 @@ public class PlanejamentoMensalDeGastoDto {
     @NotNull
     private StatusPlano status;
 
-    @JsonProperty("mes_referencia")
-    @NotNull
-    private String mesReferencia;
-
     @JsonProperty("data_criacao")
     private LocalDate dataCriacao = LocalDate.now();
 }
