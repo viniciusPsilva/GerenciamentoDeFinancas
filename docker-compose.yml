@@ -31,6 +31,11 @@ services:
       # Opens port 8080 on the container
       - '8080'
       # Where our data will be persisted
+    environment:
+      - DB_HOST=databasefinancas
+      - DB_PORT=3306
+      - DB_USER=adm-user
+      - DB_PASSWORD=root
     volumes:
       - ./docker/apifinancas/volume/data:/home/app/
     depends_on:
