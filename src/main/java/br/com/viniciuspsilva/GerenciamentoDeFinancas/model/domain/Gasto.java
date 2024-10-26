@@ -4,6 +4,8 @@ import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Prioridade;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusGasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Tipo;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.visitors.Visitable;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.visitors.Visitor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +14,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class Gasto {
+public class Gasto implements Visitable<Gasto> {
     private Integer id;
     private String nome;
     private String descricao;
@@ -27,4 +29,9 @@ public class Gasto {
     private LocalDate dataCriacao = LocalDate.now();
     private Integer idPlanoDeGasto;
     private Integer idCategoria;
+
+    @Override
+    public void accept(Visitor<Gasto, ?> visitor) {
+        visitor.visit(this);
+    }
 }

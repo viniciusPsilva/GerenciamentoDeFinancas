@@ -2,6 +2,8 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.service.impl;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.gasto.GastoNotFoundException;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.GastoRepository;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.GastoRepositoryAdapter;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.Gasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.CategoriaEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.GastoEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanejamentoMensalDeGastoEntity;
@@ -9,55 +11,64 @@ import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.GastoMapper;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.CategoriaService;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.GastoService;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.PlanejamentoMensalDeGastoService;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.visitors.DefinirCategoriaGastoVisitor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-@RequiredArgsConstructor
 @Service
 public class GastoServiceImpl implements GastoService {
 
-    private final GastoRepository repository;
+    @Autowired
+    private GastoRepository repository;
 
-    private final PlanejamentoMensalDeGastoService planoDeGastoService;
+    @Autowired
+    private GastoRepositoryAdapter repositoryAdapter;
+    @Autowired
+    private PlanejamentoMensalDeGastoService planoDeGastoService;
+    @Autowired
+    private CategoriaService categoriaService;
 
-    private final CategoriaService categoriaService;
+    @Autowired
+    private DefinirCategoriaGastoVisitor definirCategoriaGastoVisitor;
 
     private final GastoMapper gastoMapper = GastoMapper.INSTANCE;
 
     @Override
-    public GastoEntity cadastrarGasto(final GastoEntity gastoEntity) {
-        return repository.save(gastoEntity);
+    public Gasto cadastrarGasto(final Gasto gasto) {
+
+        gasto.accept(definirCategoriaGastoVisitor);
+
+        //TODO definir plano de gasto com base no nome do plano
+
+        return repositoryAdapter.cadastrar(gasto);
     }
 
     @Override
-    public Iterable<GastoEntity> listarGastos() {
-        return repository.findAll();
+    public List<Gasto> listarGastos() {
+        return repositoryAdapter.listarGastos();
     }
 
     @Override
-    public GastoEntity buscar(Integer id) {
-        Optional<GastoEntity> gasto = repository.findById(id);
-
-        if (gasto.isEmpty()) {
-            throw new GastoNotFoundException("O gasto com id informado não foi encontrado");
-        }
-
-        return gasto.get();
+    public Gasto buscar(Integer id) {
+       return repositoryAdapter.buscar(id);
     }
 
     @Override
-    public GastoEntity atualizar(GastoEntity gastoEntity, Integer id) {
-        GastoEntity gastoEntityEncontrado = buscar(id);
-        GastoEntity gastoEntityAtualizado = atualizarDadosGasto(gastoEntity, gastoEntityEncontrado);
+    public GastoEntity atualizar(GastoEntity gastoAtualizar, Integer id) {
+        Gasto gastoEncontrado = buscar(id);
+        GastoEntity gastoEntityAtualizado = atualizarDadosGasto(gastoAtualizar, GastoMapper.INSTANCE.mapToEntity(gastoEncontrado));
         return repository.save(gastoEntityAtualizado);
+
     }
 
     @Override
     public void deletar(Integer id) {
-        repository.delete(buscar(id));
+        repositoryAdapter.deletar(id);
     }
 
     @Override

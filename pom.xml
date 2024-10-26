@@ -10,7 +10,7 @@
     </parent>
     <groupId>br.com.viniciuspsilva</groupId>
     <artifactId>GerenciamentoDeFinancas</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>GerenciamentoDeFinancas</name>
     <description>
         O sistema de gerenciamento de finanças é um auxiliador na hora de você gerenciar suas finanças, a ideia

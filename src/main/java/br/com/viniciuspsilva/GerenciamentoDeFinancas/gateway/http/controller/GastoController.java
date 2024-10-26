@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/financas/gasto")
@@ -28,21 +29,20 @@ public class GastoController {
     @PostMapping
     public ResponseEntity<GastoDto> cadastrar(@RequestBody @Valid GastoDto gastoDto) {
         Gasto gasto = gastoMapper.mapFromDto(gastoDto);
-        GastoEntity gastoEntity = gastoMapper.mapToEntity(gasto);
-        Gasto gastoPersistido = gastoMapper.mapFromEntity(gastoService.cadastrarGasto(gastoEntity));
+        Gasto gastoPersistido = gastoService.cadastrarGasto(gasto);
         URI uri = URI.create("financas/gasto/" + gastoPersistido.getId());
-        return ResponseEntity.created(uri).body(null);
+        return ResponseEntity.created(uri).body(gastoMapper.mapToDto(gastoPersistido));
     }
 
     @GetMapping
-    public ResponseEntity<Iterable<GastoDto>> listar() {
-        Iterable<Gasto> gastos = gastoMapper.mapFromEntityList(gastoService.listarGastos());
+    public ResponseEntity<List<GastoDto>> listar() {
+        List<Gasto> gastos = gastoService.listarGastos();
         return ResponseEntity.ok(gastoMapper.mapToDtoList(gastos));
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<GastoDto> buscar(@PathVariable Integer id) {
-        Gasto gasto = gastoMapper.mapFromEntity(gastoService.buscar(id));
+        Gasto gasto = gastoService.buscar(id);
         return ResponseEntity.ok(gastoMapper.mapToDto(gasto));
     }
 
