@@ -13,7 +13,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@Entity(name = "gasto")
+@Entity(name = "tbl03_gasto")
 public class GastoEntity {
 
     @Id
@@ -54,9 +54,9 @@ public class GastoEntity {
     @Column(updatable = false)
     private LocalDate dataCriacao;
 
-    @ManyToOne(targetEntity = PlanejamentoMensalDeGastoEntity.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = PlanoDeGastoEntity.class, fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id_plano", name = "id_plano")
-    private PlanejamentoMensalDeGastoEntity planoDeGasto;
+    private PlanoDeGastoEntity planoDeGasto;
 
     @ManyToOne(targetEntity = CategoriaEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "id_categoria", name = "id_categoria")

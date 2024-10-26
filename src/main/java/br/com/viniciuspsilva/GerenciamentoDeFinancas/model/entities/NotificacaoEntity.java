@@ -3,7 +3,7 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity(name = "notificacao")
+@Entity(name = "tbl04_notificacao")
 public class NotificacaoEntity {
 
     @Id

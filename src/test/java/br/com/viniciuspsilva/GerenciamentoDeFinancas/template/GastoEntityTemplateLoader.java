@@ -5,7 +5,7 @@ import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.CategoriaEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.GastoEntity;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanejamentoMensalDeGastoEntity;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanoDeGastoEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Prioridade;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusGasto;
@@ -30,7 +30,7 @@ public class GastoEntityTemplateLoader implements TemplateLoader {
             add("totalParcelas", 0);
             add("parcelaAtual", 0);
             add("dataCriacao", LocalDate.now());
-            add("planoDeGasto", one(PlanejamentoMensalDeGastoEntity.class, "OK"));
+            add("planoDeGasto", one(PlanoDeGastoEntity.class, "OK"));
             add("categoria", one(CategoriaEntity.class, "valid"));
         }});
 
@@ -47,7 +47,7 @@ public class GastoEntityTemplateLoader implements TemplateLoader {
             add("totalParcelas", 12);
             add("parcelaAtual", 2);
             add("dataCriacao", LocalDate.now());
-            add("planoDeGasto", one(PlanejamentoMensalDeGastoEntity.class, "OK"));
+            add("planoDeGasto", one(PlanoDeGastoEntity.class, "OK"));
             add("categoria", one(CategoriaEntity.class, "valid"));
         }});
     }

@@ -1,6 +1,5 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities;
 
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusPlano;
 import lombok.*;
 
@@ -9,8 +8,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 @Setter
 @Getter
-@Entity(name = "planejamento_mensal_de_gasto")
-public class PlanejamentoMensalDeGastoEntity {
+@Entity(name = "tbl01_plano_de_gasto")
+public class PlanoDeGastoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,11 +31,12 @@ public class PlanejamentoMensalDeGastoEntity {
     @Enumerated(value = EnumType.STRING)
     private StatusPlano status = StatusPlano.OK;
 
-    @Column(nullable = false)
-    private MesReferencia mesReferencia;
-
     @Column(updatable = false)
     private LocalDate dataCriacao = LocalDate.now();
+
+    @Column
+    private LocalDate dataAtualizacao = LocalDate.now();
+
 
     @Column(updatable = false)
     private Integer idUsuario;
