@@ -6,7 +6,7 @@ import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.request.
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.response.PlanoDeGastoResponseDto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.PlanoDeGasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.PlanoDeGastoMapper;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.validator.PlanejamentoMensalDeGastoValidator;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.validator.PlanoDeGastoValidator;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.PlanoDeGastoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +22,7 @@ public class PlanoDeGastoController {
     private PlanoDeGastoRepository repository;
 
     @Autowired
-    private PlanejamentoMensalDeGastoValidator validator;
+    private PlanoDeGastoValidator validator;
 
     @Autowired
     private PlanoDeGastoService planoDeGastoService;
