@@ -1,8 +1,9 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.http.controller;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.PlanoDeGastoRepository;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.PlanoDeGastoDto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.PlanoDeGastoFormUpdateDto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.request.PlanoDeGastoRequestDto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.response.PlanoDeGastoResponseDto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.PlanoDeGasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.PlanoDeGastoMapper;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.validator.PlanejamentoMensalDeGastoValidator;
@@ -27,13 +28,13 @@ public class PlanoDeGastoController {
     private PlanoDeGastoService planoDeGastoService;
 
     @GetMapping
-    public ResponseEntity listar(){
+    public ResponseEntity<Iterable<PlanoDeGastoResponseDto>> listar(){
         Iterable<PlanoDeGasto> planos = planoDeGastoService.listar();
-        return ResponseEntity.ok(planos);
+        return ResponseEntity.ok(PlanoDeGastoMapper.INSTANCE.mapToDto(planos));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PlanoDeGastoDto> buscar(@PathVariable Integer id){
+    public ResponseEntity<PlanoDeGastoResponseDto> buscar(@PathVariable Integer id){
 
         PlanoDeGasto planejamentoDeGasto = planoDeGastoService.buscar(id);
 
@@ -41,7 +42,7 @@ public class PlanoDeGastoController {
     }
 
     @PostMapping
-    public ResponseEntity<PlanoDeGastoDto> cadastrar(@RequestBody @Valid PlanoDeGastoDto planoDto){
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid PlanoDeGastoRequestDto planoDto){
 
         validator.validate(planoDto);
 
@@ -53,11 +54,19 @@ public class PlanoDeGastoController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<PlanoDeGastoDto> atualizar(@RequestBody @Valid PlanoDeGastoFormUpdateDto formUpdateDto, @PathVariable final String id){
+    public ResponseEntity<PlanoDeGastoResponseDto> atualizar(@RequestBody @Valid PlanoDeGastoFormUpdateDto formUpdateDto, @PathVariable final String id){
 
         PlanoDeGasto planoDeGastoAtualizado = planoDeGastoService.atualizar(id, PlanoDeGastoMapper.INSTANCE.mapFromDto(formUpdateDto));
 
         return ResponseEntity.ok(PlanoDeGastoMapper.INSTANCE.mapToDto(planoDeGastoAtualizado));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable final Integer id){
+
+        planoDeGastoService.deletar(id);
+
+        return ResponseEntity.noContent().build();
     }
 
 }

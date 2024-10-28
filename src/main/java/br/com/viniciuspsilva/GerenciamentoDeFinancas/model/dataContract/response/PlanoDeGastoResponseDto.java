@@ -1,4 +1,4 @@
-package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract;
+package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.response;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusPlano;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class PlanoDeGastoDto {
+public class PlanoDeGastoResponseDto {
 
     @Size(min = 3, max = 120)
     private String titulo;

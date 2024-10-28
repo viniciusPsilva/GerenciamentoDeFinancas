@@ -4,12 +4,12 @@ import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.PlanoDeGasto;
 
 public interface PlanoDeGastoService {
 
-    PlanoDeGasto buscar(Integer id);
+    PlanoDeGasto buscar(final Integer id);
     PlanoDeGasto cadastrar(PlanoDeGasto plano);
 
     Iterable<PlanoDeGasto> listar();
 
-    PlanoDeGasto atualizar(String id, PlanoDeGasto updated);
+    PlanoDeGasto atualizar(final String id, PlanoDeGasto updated);
 
-
+    void deletar(final Integer id);
 }
