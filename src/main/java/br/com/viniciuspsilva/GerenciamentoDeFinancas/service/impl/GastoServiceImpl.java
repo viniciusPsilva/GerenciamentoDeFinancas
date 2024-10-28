@@ -2,11 +2,13 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.service.impl;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.GastoRepository;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.GastoRepositoryAdapter;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.Categoria;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.Gasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.PlanoDeGasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.CategoriaEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.GastoEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanoDeGastoEntity;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.CategoriaMapper;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.GastoMapper;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.PlanoDeGastoMapper;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.CategoriaService;
@@ -89,8 +91,8 @@ public class GastoServiceImpl implements GastoService {
         }
 
         if (Objects.nonNull(source.getCategoria()) && !source.getCategoria().getId().equals(target.getCategoria().getId())){
-            CategoriaEntity categoriaEntity = categoriaService.buscar(source.getCategoria().getId());
-            target.setCategoria(categoriaEntity);
+            Categoria categoria = categoriaService.buscar(source.getCategoria().getId());
+            target.setCategoria(CategoriaMapper.INSTANCE.mapToEntity(categoria));
         }
 
         return target;

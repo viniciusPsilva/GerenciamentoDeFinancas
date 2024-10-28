@@ -16,6 +16,7 @@ public class PlanoDeGastoEntity {
     @Column(name = "id_plano")
     private Integer id;
 
+    //TODO remover unique = true e validar se plano existe para o usuário antes de cadastrar.
     @Column(nullable = false, length = 60, unique = true)
     private String titulo;
 

@@ -22,7 +22,7 @@ public class CategoriaMapperTest {
     public void mapToCategoriaFromCategoriaDto(){
         CategoriaDto categoriaDto = Fixture.from(CategoriaDto.class).gimme("valid");
 
-        Categoria target = CategoriaMapper.INSTANCE.mapFromCategoriaDto(categoriaDto);
+        Categoria target = CategoriaMapper.INSTANCE.mapFromDto(categoriaDto);
 
         Assertions.assertEquals(categoriaDto.getNome(), target.getNome());
         Assertions.assertEquals(categoriaDto.getDescricao(), target.getDescricao());
@@ -42,7 +42,7 @@ public class CategoriaMapperTest {
         CategoriaEntity source = Fixture.from(CategoriaEntity.class).gimme("valid");
         source.setDataCriacao(LocalDate.of(2021, 2, 13));
 
-        Categoria target = CategoriaMapper.INSTANCE.mapFromCategoriaEntity(source);
+        Categoria target = CategoriaMapper.INSTANCE.mapFromEntity(source);
         Assertions.assertEquals(source.getNome(), target.getNome());
         Assertions.assertEquals(source.getDescricao(), target.getDescricao());
     }

@@ -1,4 +1,4 @@
-package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract;
+package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.request;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusPlano;
 import com.fasterxml.jackson.annotation.JsonProperty;

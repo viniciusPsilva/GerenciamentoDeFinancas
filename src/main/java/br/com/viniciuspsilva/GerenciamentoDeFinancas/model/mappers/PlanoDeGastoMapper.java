@@ -1,7 +1,7 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.request.PlanoDeGastoRequestDto;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.PlanoDeGastoFormUpdateDto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.request.PlanoDeGastoFormUpdateDto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.response.PlanoDeGastoResponseDto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.PlanoDeGasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanoDeGastoEntity;

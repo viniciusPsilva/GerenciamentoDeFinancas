@@ -1,7 +1,7 @@
 package br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.http.controller;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.PlanoDeGastoRepository;
-import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.PlanoDeGastoFormUpdateDto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.request.PlanoDeGastoFormUpdateDto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.request.PlanoDeGastoRequestDto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.response.PlanoDeGastoResponseDto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.PlanoDeGasto;

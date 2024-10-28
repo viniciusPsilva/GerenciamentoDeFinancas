@@ -1,4 +1,4 @@
-package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract;
+package br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.request;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,11 +8,7 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Setter
-public class CategoriaDto {
-
-    @Size(min = 3, max = 120)
-    @NotNull
-    private String nome;
+public class CategoriaFormUpdateDto {
 
     @Size(min = 3, max = 255)
     @NotNull

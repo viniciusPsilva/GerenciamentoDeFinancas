@@ -27,6 +27,8 @@ public class PlanoDeGastoServiceImpl implements PlanoDeGastoService {
 
     @Override
     public PlanoDeGasto cadastrar(PlanoDeGasto plano) {
+        //TODO validar se plano existe para o usuário antes de cadastrar.
+
         final PlanoDeGastoEntity planejamentoMensalDeGastoEntity = PlanoDeGastoMapper.INSTANCE.mapToEntity(plano);
         final PlanoDeGastoEntity planejamentoPersistido;
 
