@@ -20,7 +20,7 @@ public class PlanoDeGastoServiceImpl implements PlanoDeGastoService {
     private PlanoDeGastoRepository repository;
 
     @Override
-    public PlanoDeGasto buscar(Integer id) {
+    public PlanoDeGasto buscar(final Integer id) {
         PlanoDeGastoEntity planoDeGastoEntity = repository.findById(id).orElseThrow(() -> new PlanoDeGastoNotFoundException("Não foi possível encontrar o plano de gasto: " + id));
         return PlanoDeGastoMapper.INSTANCE.mapFromEntity(planoDeGastoEntity);
     }
@@ -48,7 +48,7 @@ public class PlanoDeGastoServiceImpl implements PlanoDeGastoService {
     }
 
     @Override
-    public PlanoDeGasto atualizar(String id, PlanoDeGasto updated) {
+    public PlanoDeGasto atualizar(final String id, PlanoDeGasto updated) {
 
         final PlanoDeGasto planoDeGasto = buscar(Integer.valueOf(id));
 
@@ -57,6 +57,14 @@ public class PlanoDeGastoServiceImpl implements PlanoDeGastoService {
         PlanoDeGastoEntity planoAtualizadoPersistido = repository.save(PlanoDeGastoMapper.INSTANCE.mapToEntity(planoDeGasto));
 
         return PlanoDeGastoMapper.INSTANCE.mapFromEntity(planoAtualizadoPersistido);
+    }
+
+    @Override
+    public void deletar(final Integer id) {
+
+        PlanoDeGasto planoDeGasto = buscar(id);
+
+        repository.delete(PlanoDeGastoMapper.INSTANCE.mapToEntity(planoDeGasto));
     }
 
     private void atualizarDadosPlano(final PlanoDeGasto planoDeGasto, final PlanoDeGasto updated){
