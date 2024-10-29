@@ -5,6 +5,7 @@ import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.categoria.CategoriaException;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.exception.categoria.CategoriaNotFoundException;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.CategoriaRepository;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.Categoria;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.CategoriaEntity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,27 +36,27 @@ public class CategoriaServiceImplTest {
 
     @Test
     public void deveCadastrarCategoria(){
+        Categoria categoria = Fixture.from(Categoria.class).gimme("valid");
         CategoriaEntity categoriaEntity = Fixture.from(CategoriaEntity.class).gimme("valid");
         Mockito.when(repository.save(any(CategoriaEntity.class))).thenReturn(categoriaEntity);
 
-        CategoriaEntity categoriaEntityCadastrada = service.cadastrar(categoriaEntity);
+        Categoria categoriaEntityCadastrada = service.cadastrar(categoria);
 
         Assertions.assertNotNull(categoriaEntityCadastrada);
-        Assertions.assertEquals(categoriaEntity.getId(), categoriaEntityCadastrada.getId());
-        Assertions.assertEquals(categoriaEntity.getDescricao(), categoriaEntityCadastrada.getDescricao());
-        Assertions.assertEquals(categoriaEntity.getNome(), categoriaEntityCadastrada.getNome());
-        Assertions.assertEquals(categoriaEntity.getDataCriacao(), categoriaEntityCadastrada.getDataCriacao());
+        Assertions.assertEquals(categoria.getId(), categoriaEntityCadastrada.getId());
+        Assertions.assertEquals(categoria.getDescricao(), categoriaEntityCadastrada.getDescricao());
+        Assertions.assertEquals(categoria.getNome(), categoriaEntityCadastrada.getNome());
     }
 
     @Test
     public void deveLancarCategoriaExceptionAoCadastrarCategoria(){
-        CategoriaEntity categoriaEntity = Fixture.from(CategoriaEntity.class).gimme("valid");
+        Categoria categoria = Fixture.from(Categoria.class).gimme("valid");
         final String expectedException = "Erro ao cadastrar Categoria";
 
         Mockito.when(repository.save(any(CategoriaEntity.class))).thenThrow(new RuntimeException());
 
         CategoriaException categoriaException = Assertions.assertThrows(CategoriaException.class, () -> {
-            service.cadastrar(categoriaEntity);
+            service.cadastrar(categoria);
         });
 
         Assertions.assertNotNull(categoriaException);
@@ -69,13 +70,12 @@ public class CategoriaServiceImplTest {
         CategoriaEntity categoriaEntity = Fixture.from(CategoriaEntity.class).gimme("valid");
         Mockito.when(repository.findById(anyInt())).thenReturn(Optional.of(categoriaEntity));
 
-        CategoriaEntity categoriaEntityEncontrada = service.buscar(1);
+        Categoria categoriaEncontrada = service.buscar(1);
 
-        Assertions.assertNotNull(categoriaEntityEncontrada);
-        Assertions.assertEquals(categoriaEntity.getId(), categoriaEntityEncontrada.getId());
-        Assertions.assertEquals(categoriaEntity.getDescricao(), categoriaEntityEncontrada.getDescricao());
-        Assertions.assertEquals(categoriaEntity.getNome(), categoriaEntityEncontrada.getNome());
-        Assertions.assertEquals(categoriaEntity.getDataCriacao(), categoriaEntityEncontrada.getDataCriacao());
+        Assertions.assertNotNull(categoriaEncontrada);
+        Assertions.assertEquals(categoriaEntity.getId(), categoriaEncontrada.getId());
+        Assertions.assertEquals(categoriaEntity.getDescricao(), categoriaEncontrada.getDescricao());
+        Assertions.assertEquals(categoriaEntity.getNome(), categoriaEncontrada.getNome());
     }
 
     @Test

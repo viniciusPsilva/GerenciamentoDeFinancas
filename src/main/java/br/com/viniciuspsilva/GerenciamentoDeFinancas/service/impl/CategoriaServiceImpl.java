@@ -66,6 +66,12 @@ public class CategoriaServiceImpl implements CategoriaService {
         return CategoriaMapper.INSTANCE.mapFromEntity(categoriaAtualizadaPersistida);
     }
 
+    @Override
+    public void deletar(Integer id) {
+        Categoria categoria = buscar(id);
+        repository.delete(CategoriaMapper.INSTANCE.mapToEntity(categoria));
+    }
+
     private void atualizarDadosCategoria(final Categoria categoriaCadastrada, final  Categoria categoriaAtualizada) {
         String descricao = categoriaAtualizada.getDescricao();
         if (Objects.nonNull(descricao)){

@@ -12,4 +12,6 @@ public interface CategoriaService {
     Iterable<Categoria> listar();
 
     Categoria atualizar(Integer id, Categoria categoriaAtualizada);
+
+    void deletar(Integer id);
 }

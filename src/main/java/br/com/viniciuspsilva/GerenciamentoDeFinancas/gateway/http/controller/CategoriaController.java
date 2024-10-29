@@ -46,4 +46,10 @@ public class CategoriaController {
         return ResponseEntity.ok(CategoriaMapper.INSTANCE.mapToDto(categoriaAtualizada));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Integer id) {
+        categoriaService.deletar(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
