@@ -2,17 +2,20 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.service.impl;
 
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.GastoRepository;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.GastoRepositoryAdapter;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.Categoria;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.Gasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.PlanoDeGasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.CategoriaEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.GastoEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.PlanoDeGastoEntity;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.CategoriaMapper;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.GastoMapper;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.mappers.PlanoDeGastoMapper;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.CategoriaService;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.GastoService;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.PlanoDeGastoService;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.visitors.DefinirCategoriaGastoVisitor;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.visitors.DefinirPlanoGastoVisitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +37,8 @@ public class GastoServiceImpl implements GastoService {
 
     @Autowired
     private DefinirCategoriaGastoVisitor definirCategoriaGastoVisitor;
+    @Autowired
+    private DefinirPlanoGastoVisitor definirPlanoGastoVisitor;
 
     private final GastoMapper gastoMapper = GastoMapper.INSTANCE;
 
@@ -41,8 +46,7 @@ public class GastoServiceImpl implements GastoService {
     public Gasto cadastrarGasto(final Gasto gasto) {
 
         gasto.accept(definirCategoriaGastoVisitor);
-
-        //TODO definir plano de gasto com base no nome do plano
+        gasto.accept(definirPlanoGastoVisitor);
 
         return repositoryAdapter.cadastrar(gasto);
     }
@@ -89,8 +93,8 @@ public class GastoServiceImpl implements GastoService {
         }
 
         if (Objects.nonNull(source.getCategoria()) && !source.getCategoria().getId().equals(target.getCategoria().getId())){
-            CategoriaEntity categoriaEntity = categoriaService.buscar(source.getCategoria().getId());
-            target.setCategoria(categoriaEntity);
+            Categoria categoria = categoriaService.buscar(source.getCategoria().getId());
+            target.setCategoria(CategoriaMapper.INSTANCE.mapToEntity(categoria));
         }
 
         return target;

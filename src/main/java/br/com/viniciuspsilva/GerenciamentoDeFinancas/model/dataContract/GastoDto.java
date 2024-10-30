@@ -62,11 +62,13 @@ public class GastoDto {
 
     private LocalDate dataCriacao = LocalDate.now();
 
-    @JsonProperty(value = "id_plano")
+    @JsonProperty(value = "nome_plano_gasto")
     @JsonIgnoreProperties
-    private Integer idPlanoDeGasto;
+    @NotNull
+    private String nomePlanoGasto;
 
-    @JsonProperty(value = "id_categoria")
+    @JsonProperty(value = "nome_categoria")
     @JsonIgnoreProperties
-    private Integer idCategoria;
+    @NotNull
+    private String nomeCategoria;
 }

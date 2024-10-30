@@ -16,13 +16,19 @@ public class CategoriaEntity {
     @Column(name = "id_categoria")
     private Integer id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String descricao;
 
     @Column(nullable = false, updatable = false)
     private LocalDate dataCriacao = LocalDate.now();
+
+    @Column
+    private LocalDate dataAtualizacao = LocalDate.now();
+
+    @Column(updatable = false)
+    private String idUsuario;
 
 }

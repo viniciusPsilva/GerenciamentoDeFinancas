@@ -22,7 +22,6 @@ public class PlanoDeGastoTemplateLoader implements TemplateLoader {
                 add("totalGasto", new BigDecimal(175));
                 add("status", StatusPlano.OK);
                 add("dataCriacao", LocalDate.of(2021, 1,1));
-                add("idUsuario", 1);
             }
         });
 

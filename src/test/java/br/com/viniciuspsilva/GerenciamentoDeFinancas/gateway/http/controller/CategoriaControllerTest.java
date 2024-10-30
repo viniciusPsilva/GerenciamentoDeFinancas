@@ -4,6 +4,7 @@ import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.gateway.repository.CategoriaRepository;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.dataContract.CategoriaDto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.Categoria;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.entities.CategoriaEntity;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.impl.CategoriaServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,8 +47,8 @@ public class CategoriaControllerTest {
 
     @Test
     public void deveCadastrarUmaCategoria() throws Exception {
-        CategoriaEntity categoriaEntity = Fixture.from(CategoriaEntity.class).gimme("valid");
-        Mockito.when(categoriaService.cadastrar(ArgumentMatchers.any(CategoriaEntity.class))).thenReturn(categoriaEntity);
+        Categoria categoria = Fixture.from(Categoria.class).gimme("valid");
+        Mockito.when(categoriaService.cadastrar(ArgumentMatchers.any(Categoria.class))).thenReturn(categoria);
 
         CategoriaDto categoriaDto = Fixture.from(CategoriaDto.class).gimme("valid");
 
@@ -60,7 +61,7 @@ public class CategoriaControllerTest {
         MockHttpServletResponse response = mvcResult.getResponse();
         Assertions.assertEquals(response.getStatus(), HttpStatus.CREATED.value());
 
-        Mockito.verify(categoriaService, Mockito.times(1)).cadastrar(ArgumentMatchers.any(CategoriaEntity.class));
+        Mockito.verify(categoriaService, Mockito.times(1)).cadastrar(ArgumentMatchers.any(Categoria.class));
     }
 
 }

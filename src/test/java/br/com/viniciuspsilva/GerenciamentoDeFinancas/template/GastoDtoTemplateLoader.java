@@ -28,8 +28,8 @@ public class GastoDtoTemplateLoader implements TemplateLoader {
             add("totalParcelas", 0);
             add("parcelaAtual", 0);
             add("dataCriacao", LocalDate.now());
-            add("idPlanoDeGasto", 1);
-            add("idCategoria", 1);
+            add("nomePlanoGasto", "Despesas Essenciais");
+            add("nomeCategoria", "Despesas Essenciais");
         }});
 
         Fixture.of(GastoDto.class).addTemplate("frequente", new Rule() {{
@@ -45,8 +45,8 @@ public class GastoDtoTemplateLoader implements TemplateLoader {
             add("totalParcelas", 12);
             add("parcelaAtual", 2);
             add("dataCriacao", LocalDate.now());
-            add("idPlanoDeGasto", 1);
-            add("idCategoria", 1);
+            add("nomePlanoGasto", "Despesas Essenciais");
+            add("nomeCategoria", "Despesas Essenciais");
         }});
 
         Fixture.of(GastoDto.class).addTemplate("parcelado", new Rule() {{
@@ -62,8 +62,8 @@ public class GastoDtoTemplateLoader implements TemplateLoader {
             add("totalParcelas", 5);
             add("parcelaAtual", 4);
             add("dataCriacao", LocalDate.now());
-            add("idPlanoDeGasto", 1);
-            add("idCategoria", 1);
+            add("nomePlanoGasto", "Despesas Essenciais");
+            add("nomeCategoria", "Despesas Essenciais");
         }});
 
         Fixture.of(GastoDto.class).addTemplate("update-gasto", new Rule() {{
