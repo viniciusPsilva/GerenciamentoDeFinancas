@@ -15,6 +15,7 @@ import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.CategoriaService;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.GastoService;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.service.PlanoDeGastoService;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.visitors.DefinirCategoriaGastoVisitor;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.visitors.DefinirPlanoGastoVisitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,8 @@ public class GastoServiceImpl implements GastoService {
 
     @Autowired
     private DefinirCategoriaGastoVisitor definirCategoriaGastoVisitor;
+    @Autowired
+    private DefinirPlanoGastoVisitor definirPlanoGastoVisitor;
 
     private final GastoMapper gastoMapper = GastoMapper.INSTANCE;
 
@@ -43,8 +46,7 @@ public class GastoServiceImpl implements GastoService {
     public Gasto cadastrarGasto(final Gasto gasto) {
 
         gasto.accept(definirCategoriaGastoVisitor);
-
-        //TODO definir plano de gasto com base no nome do plano
+        gasto.accept(definirPlanoGastoVisitor);
 
         return repositoryAdapter.cadastrar(gasto);
     }

@@ -27,8 +27,9 @@ public class Gasto implements Visitable<Gasto> {
     private int totalParcelas = 0;
     private int parcelaAtual = 0;
     private LocalDate dataCriacao = LocalDate.now();
-    private Integer idPlanoDeGasto;
-    private Integer idCategoria;
+    private PlanoDeGasto planoDeGasto;
+    private Categoria categoria;
+    private Usuario usuario;
 
     @Override
     public void accept(Visitor<Gasto, ?> visitor) {

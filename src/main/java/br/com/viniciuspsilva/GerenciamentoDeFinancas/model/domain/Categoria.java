@@ -15,5 +15,5 @@ public class Categoria {
     private LocalDate dataAtualizacao;
 
     //TODO remover usuario padrão após a implementação da autenticação.
-    private Integer idUsuario = 1;
+    private String idUsuario = "cb98326b-d84b-4f98-a2ad-388a87736ae7";
 }

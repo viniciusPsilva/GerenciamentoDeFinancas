@@ -29,6 +29,6 @@ public class CategoriaEntity {
     private LocalDate dataAtualizacao = LocalDate.now();
 
     @Column(updatable = false)
-    private Integer idUsuario;
+    private String idUsuario;
 
 }

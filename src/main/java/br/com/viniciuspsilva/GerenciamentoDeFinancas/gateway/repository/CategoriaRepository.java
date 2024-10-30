@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface CategoriaRepository extends CrudRepository<CategoriaEntity, Integer> {
 
-    CategoriaEntity findByNomeAndIdUsuario(String nome,Integer idUsuario);
+    CategoriaEntity findByNomeAndIdUsuario(String nome,String idUsuario);
 }

@@ -3,7 +3,9 @@ package br.com.viniciuspsilva.GerenciamentoDeFinancas.template;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.Categoria;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.Gasto;
+import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.domain.PlanoDeGasto;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.MesReferencia;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.Prioridade;
 import br.com.viniciuspsilva.GerenciamentoDeFinancas.model.enums.StatusGasto;
@@ -28,8 +30,8 @@ public class GastoTemplateLoader implements TemplateLoader {
             add("totalParcelas", 0);
             add("parcelaAtual", 0);
             add("dataCriacao", LocalDate.now());
-            add("idPlanoDeGasto", 1);
-            add("idCategoria", 1);
+            add("categoria", one(Categoria.class, "valid"));
+            add("planoDeGasto", one(PlanoDeGasto.class, "OK"));
         }});
 
     }

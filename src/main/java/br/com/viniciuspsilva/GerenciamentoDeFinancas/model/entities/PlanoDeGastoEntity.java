@@ -40,6 +40,6 @@ public class PlanoDeGastoEntity {
 
 
     @Column(updatable = false)
-    private Integer idUsuario;
+    private String idUsuario;
 
 }
